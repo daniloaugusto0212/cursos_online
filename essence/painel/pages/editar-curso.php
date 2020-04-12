@@ -1,7 +1,7 @@
 <?php
     if (isset($_GET['id'])) {
         $id = (int)$_GET['id'];
-        $noticia = Painel::select('tb_site.noticias','id = ?',array($id));    
+        $curso = Painel::select('produtos','id = ?',array($id));    
     }else{
         Painel::alert('erro','Você precisa passar o parametro ID.');
         die();
@@ -9,56 +9,75 @@
 ?>
 
 <div class="box-content">
-    <h2><i class="fas fa-user-edit"></i> Editar Notícia</h2>
+    <h2><i class="fas fa-user-edit"></i> Editar Curso</h2>
 
     <form  method="post" enctype="multipart/form-data"> <!--enctype="multipart/form-data" para funcionar o upload de imagens-->
 
         <?php
             if (isset($_POST['acao'])) {
-                //Enviei o meu formulário.                
-                
-                $nome = $_POST['titulo'];
-                $conteudo = $_POST['conteudo'];               
-                $imagem = $_FILES['capa'];
-                $imagem_atual = $_POST['imagem_atual'];
-                $verifica = MySql::conectar()->prepare("SELECT `id` FROM `tb_site.noticias` WHERE titulo = ? AND categoria_id = ? AND id != ?");
+                //Enviei o meu formulário.               
+                $nome = $_POST['nome'];
+                $descricao = $_POST['descricao'];
+                $preco = $_POST['preco'];
+				$preco_promo = $_POST['preco_promo'];
+                $imagem = $_FILES['imagem'];
+                $imagem_atual = $_POST['imagem_atual'];                
+				$link = $_POST['link'];       
+                $verifica = MySql::conectar()->prepare("SELECT `id` FROM `produtos` WHERE nome = ? AND categoria_id = ? AND id != ?");
                 $verifica->execute(array($nome,$_POST['categoria_id'],$id));
                 if($verifica->rowCount() == 0){               
-                if ($imagem['name'] != '') {
-                    //Existe o upload de imagem
-                    if (Painel::imagemValida($imagem)) {
-                        Painel::deleteFile($imagem_atual);
-                        $imagem = Painel::uploadFile($imagem);
-                        $slug = Painel::generateSlug($nome);
-                        $arr = ['titulo'=>$nome,'data'=>date('Y-m-d'),'conteudo'=>$conteudo,'capa'=>$imagem,'slug'=>$slug, 'id'=>$id, 'nome_tabela'=>'tb_site.noticias'];
-                        Painel::update($arr);
-                        $noticia = Painel::select('tb_site.noticias','id = ?',array($id));
-                        Painel::alert('sucesso',' A noticia foi editada junto com a imagem!');
+                    if ($imagem['name'] != '') {    
+                        //Existe o upload de imagem
+                        if (Painel::imagemValida($imagem)) {
+                            Painel::deleteFile($imagem_atual);
+                            $imagem = Painel::uploadFile($imagem);
+                            $slug = Painel::generateSlug($nome);
+                            $arr = ['nome'=>$nome,'descricao'=>$descricao,'imagem'=>$imagem,'slug'=>$slug, 'id'=>$id, 'nome_tabela'=>'produtos'];
+                            Painel::update($arr);
+                            $curso = Painel::select('produtos','id = ?',array($id));
+                            Painel::alert('sucesso',' A curso foi editada junto com a imagem!');
+                        }else{
+                            Painel::alert('erro',' O formato da imagem não é válido!');
+                        }
                     }else{
-                        Painel::alert('erro',' O formato da imagem não é válido!');
+                        $imagem = $imagem_atual;
+                        $slug = Painel::generateSlug($nome);                     
+                        $arr = ['nome'=>$nome,'categoria_id'=>$_POST['categoria_id'],'descricao'=>$descricao,'imagem'=>$imagem,'slug'=>$slug, 'id'=>$id, 'nome_tabela'=>'produtos'];
+                        Painel::update($arr);
+                        $curso = Painel::select('produtos','id = ?',array($id));
+                        Painel::alert('sucesso',' A curso foi editado com sucesso!');
                     }
                 }else{
-                    $imagem = $imagem_atual;
-                    $slug = Painel::generateSlug($nome);                     
-                    $arr = ['titulo'=>$nome,'categoria_id'=>$_POST['categoria_id'],'conteudo'=>$conteudo,'capa'=>$imagem,'slug'=>$slug, 'id'=>$id, 'nome_tabela'=>'tb_site.noticias'];
-                    Painel::update($arr);
-                    $noticia = Painel::select('tb_site.noticias','id = ?',array($id));
-                    Painel::alert('sucesso',' A noticia foi editada com sucesso!');
+                    Painel::alert('erro', 'Já existe um curso com este nome!');
                 }
-            }else{
-                Painel::alert('erro', 'Já existe uma notícia com este nome!');
-            }
             }
         ?>
 
         <div class="form-group">
             <label>Nome: </label>
-            <input type="text" name="titulo" required value="<?php echo $noticia['titulo']; ?>">
+            <input type="text" name="nome" required value="<?php echo $curso['nome']; ?>">
         </div><!--form-group-->
 
         <div class="form-group">
+			<label>Preço:</label>
+			<input type="text"  name="preco" placeholder="exemplo 59.90" value="<?php echo $curso['preco']; ?>">
+		</div><!--form-group-->
+
+        <div class="form-group">
+			<label>Preço Final (com desconto):</label>
+            <input type="text"  name="preco_promo" placeholder="exemplo 59.90" value="<?php echo $curso['preco_promo']; ?>">
+		</div><!--form-group-->	
+
+        <div class="form-group">
+			<label>Link:</label>
+			<input type="text"  name="link" placeholder="https://site.com" value="<?php echo $curso['link']; ?>">
+		</div><!--form-group-->	
+
+    
+
+        <div class="form-group">
             <label>Conteúdo: </label>
-            <textarea  class="tinymce" name="conteudo"><?php echo $noticia['conteudo']; ?></textarea>
+            <textarea  class="tinymce" name="descricao"><?php echo $curso['descricao']; ?></textarea>
         </div><!--form-group-->
 
         <div class="form-group">
@@ -68,15 +87,15 @@
 				$categorias = Painel::selectAll('tb_site.categorias');
 				foreach ($categorias as $key => $value) {
 			?>
-			<option <?php if($value['id'] == $noticia['categoria_id']) echo 'selected'; ?> value="<?php echo $value['id'] ?>"><?php echo $value['nome']; ?></option>
+			<option <?php if($value['id'] == $curso['categoria_id']) echo 'selected'; ?> value="<?php echo $value['id'] ?>"><?php echo $value['nome']; ?></option>
 			<?php } ?>
 		</select>
 		</div><!--form-group-->
         
         <div class="form-group">
             <label>Imagem</label>
-            <input type="file" name="capa">
-            <input type="hidden" name="imagem_atual" value="<?php echo $noticia['capa']; ?>">
+            <input type="file" name="imagem">
+            <input type="hidden" name="imagem_atual" value="<?php echo $curso['imagem']; ?>">
         </div><!--form-group-->
 
         <div class="form-group">            

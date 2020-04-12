@@ -79,6 +79,11 @@
     color: black!important;
 }
 
+img.carrossel{
+    min-width: 300px;
+    max-height: 600px;
+}
+
 .contato-container{    
 padding: 40px 0;
 text-align: center;
