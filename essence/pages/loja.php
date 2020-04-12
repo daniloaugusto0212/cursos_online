@@ -11,8 +11,18 @@
     if(!isset($_POST['parametro'])){
     if($categoria['nome'] == ''){
         $cat = 'Visualizando todos os Cursos';
+        $totCursos = 'cursos disponíveis em todas as categorias';
+        $totProdutos = MySql::conectar()->prepare("SELECT `id` FROM `produtos`");
+        $totProdutos->execute();
+        $totProdutos = $totProdutos->fetchAll();
+        $totProdutos = count($totProdutos);        
     }else{
         $cat = 'Visualizando Cursos em '.$categoria['nome'].'';
+        $totCursos = 'cursos disponíveis em '.$categoria['nome'].'';
+        $totProdutos = MySql::conectar()->prepare("SELECT * FROM `produtos` WHERE categoria_id = $categoria[id]");
+        $totProdutos->execute();
+        $totProdutos = $totProdutos->fetchAll();
+        $totProdutos = count($totProdutos);
     }
     }else{
         $cat = ' Busca realizada com sucesso!';
@@ -92,114 +102,55 @@
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="shop_sidebar_area">
 
-                        <!-- ##### Single Widget ##### -->
+                        <!-- ##### Menu lateral categorias ##### -->
                         <div class="widget catagory mb-50">
                             <!-- Widget Title -->
-                            <h6 class="widget-title mb-30">Categorias</h6>
+                            <h6 class="widget-title mb-30">CATEGORIAS</h6>
 
                             <!--  Catagories  -->
                             <div class="catagories-menu">
-                                <ul id="menu-content2" class="menu-content collapse show">
+                                <ul id="menu-content2" class="menu-content collapse show">                
+                                    </li>
                                     <?php
                                      $categorias = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` ");
                                      $categorias->execute();
-                                     $categorias = $categorias->fetchAll();  
-                                    foreach ($categorias as $key => $value) {
-                                        ?>
+                                     $categorias = $categorias->fetchAll();            
+                                    for ($i=0; $i < count($categorias); $i++) { 
+                                        
+                                     ?> 
                                     
                                     <!-- Single Item -->
-                                    <li data-toggle="collapse" data-target="#<?php echo $value['nome']; ?>" >
-                                        <a href="#"><?php echo $value['nome']; ?> </a>
-                                        <ul class="sub-menu collapse show" id="<?php echo $value['nome']; ?>">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Bodysuits</a></li>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                            <li><a href="#">Jackets &amp; Coats</a></li>
-                                            <li><a href="#">Jeans</a></li>
-                                            <li><a href="#">Pants &amp; Leggings</a></li>
-                                            <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                            <li><a href="#">Shirts &amp; Blouses</a></li>
-                                            <li><a href="#">Shirts</a></li>
-                                            <li><a href="#">Sweaters &amp; Knits</a></li>
-                                        </ul>
+                                    <li data-toggle="collapse" data-target="#<?php echo $categorias[$i]['nome']; 
+                                    ?>"><a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categorias[$i]['slug']; ?>"><?php echo $categorias[$i]['nome']; ?> </a>
+                                        
                                     </li>
                                     <?php } ?>
-                                    <!-- Single Item -->
-                                    <li data-toggle="collapse" data-target="#shoes" class="collapsed">
-                                        <a href="#">shoes</a>
-                                        <ul class="sub-menu collapse" id="shoes">
-                                            <li><a href="#">All</a></li>
-                                            <li><a href="#">Bodysuits</a></li>
-                                            <li><a href="#">Dresses</a></li>
-                                            <li><a href="#">Hoodies &amp; Sweats</a></li>
-                                            <li><a href="#">Jackets &amp; Coats</a></li>
-                                            <li><a href="#">Jeans</a></li>
-                                            <li><a href="#">Pants &amp; Leggings</a></li>
-                                            <li><a href="#">Rompers &amp; Jumpsuits</a></li>
-                                            <li><a href="#">Shirts &amp; Blouses</a></li>
-                                            <li><a href="#">Shirts</a></li>
-                                            <li><a href="#">Sweaters &amp; Knits</a></li>
-                                        </ul>
-                                    </li>
+                                    <li data-toggle="collapse" data-target="#"><a href="<?php echo INCLUDE_PATH; ?>loja/">Todas </a>
+                                    <!-- Single Item -->                                  
                                    
                                 </ul>
                             </div>
                         </div>
 
-                        <!-- ##### Single Widget ##### -->
+                        <!-- ##### 'Single Widge't ##### -->
                         <div class="widget price mb-50">
                             <!-- Widget Title -->
-                            <h6 class="widget-title mb-30">Filter by</h6>
-                            <!-- Widget Title 2 -->
-                            <p class="widget-title2 mb-30">Price</p>
+                            <!-- <h6 class="widget-title mb-30">FILTRAR POR</h6>
+                           
+                            <p class="widget-title2 mb-30">PREÇO</p>
 
                             <div class="widget-desc">
                                 <div class="slider-range">
-                                    <div data-min="49" data-max="360" data-unit="$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="49" data-value-max="360" data-label-result="Range:">
+                                    <div data-min="5" data-max="1000" data-unit="R$" class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" data-value-min="5" data-value-max="1000" data-label-result="Valor:">
                                         <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
                                         <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
                                         <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
                                     </div>
-                                    <div class="range-price">Range: $49.00 - $360.00</div>
+                                    <div class="range-price">Valor: R$5.00 - R$1000.00</div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- ##### Single Widget ##### -->
-                        <div class="widget color mb-50">
-                            <!-- Widget Title 2 -->
-                            <p class="widget-title2 mb-30">Color</p>
-                            <div class="widget-desc">
-                                <ul class="d-flex">
-                                    <li><a href="#" class="color1"></a></li>
-                                    <li><a href="#" class="color2"></a></li>
-                                    <li><a href="#" class="color3"></a></li>
-                                    <li><a href="#" class="color4"></a></li>
-                                    <li><a href="#" class="color5"></a></li>
-                                    <li><a href="#" class="color6"></a></li>
-                                    <li><a href="#" class="color7"></a></li>
-                                    <li><a href="#" class="color8"></a></li>
-                                    <li><a href="#" class="color9"></a></li>
-                                    <li><a href="#" class="color10"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- ##### Single Widget ##### -->
-                        <div class="widget brands mb-50">
-                            <!-- Widget Title 2 -->
-                            <p class="widget-title2 mb-30">Brands</p>
-                            <div class="widget-desc">
-                                <ul>
-                                    <li><a href="#">Asos</a></li>
-                                    <li><a href="#">Mango</a></li>
-                                    <li><a href="#">River Island</a></li>
-                                    <li><a href="#">Topshop</a></li>
-                                    <li><a href="#">Zara</a></li>
-                                </ul>
-                            </div>
-                        </div>
+                            </div> -->
+                        </div>                       
+                       
                     </div>
                 </div>
 
@@ -210,10 +161,10 @@
                                 <div class="product-topbar d-flex align-items-center justify-content-between">
                                     <!-- Total Products -->
                                     <div class="total-products">
-                                        <p><span>186</span> products found</p>
+                                        <p><span><?php echo $totProdutos; ?></span> <?php echo $totCursos ?></p>
                                     </div>
                                     <!-- Sorting -->
-                                    <div class="product-sorting d-flex">
+                                    <!-- <div class="product-sorting d-flex">
                                         <p>Sort by:</p>
                                         <form action="#" method="get">
                                             <select name="select" id="sortByselect">
@@ -224,7 +175,7 @@
                                             </select>
                                             <input type="submit" class="d-none" value="">
                                         </form>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

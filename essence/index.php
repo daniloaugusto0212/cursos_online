@@ -63,7 +63,7 @@
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
                 <div class="logo">
-                    <a class="nav-brand " href="<?php echo INCLUDE_PATH; ?>">ESSENCIAL</a>
+                    <a class="nav-brand " href="<?php echo INCLUDE_PATH; ?>">DANSOL</a>
                     <a class="log" href="<?php echo INCLUDE_PATH; ?>">cursos online</a>
                 </div>
                 <!-- Navbar Toggler -->
@@ -102,12 +102,12 @@
             <!-- Header Meta Data -->
             <div class="header-meta d-flex clearfix justify-content-end">
                 <!-- Search Area -->
-                <div class="search-area">
-                    <form action="#" method="post">
+                <!-- <div class="search-area">
+                    <form  method="post">
                         <input type="text" name="parametro" id="headerSearch" placeholder="Pesquisar...">
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        <button type="submit" name="buscar"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
-                </div>
+                </div> -->
                 <!-- Favourite Area -->
                 <!-- <div class="favourite-area">
                     <a href="#"><img src="<?php echo INCLUDE_PATH;?>img/core-img/heart.svg" alt=""></a>
@@ -155,7 +155,7 @@
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
                             <div class="logo">
-                                <a class="nav-brand " href="<?php echo INCLUDE_PATH; ?>">ESSENCIAL</a>
+                                <a class="nav-brand " href="<?php echo INCLUDE_PATH; ?>">DANSOL</a>
                                 <!-- <a class="log" href="<?php echo INCLUDE_PATH; ?>">cursos online</a> -->
                             </div>
                         </div>
@@ -208,9 +208,12 @@
                     <div class="single_widget_area">
                         <div class="footer_social_area">
                             <a href="https://www.facebook.com/sitedansite" target="_blank" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="https://www.facebook.com/sitedansite" target="_blank" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            <!-- <i href="#" target="_blank" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a> -->
-                            <!-- <i href="#" target="_blank" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a> -->
+
+                            <a href="https://www.instagram.com/sitedan" target="_blank" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+
+                            <a href="https://api.whatsapp.com/send?phone=5511994576376&text=Ol%C3%A1%2C%20venho%20atrav%C3%A9s%20do%20site%20de%20cursos." target="_blank" data-toggle="tooltip" data-placement="top" title="Instagram">
+                             <i href="#" target="_blank" data-toggle="tooltip" data-placement="top" title="Whatsapp"><i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
+                           
                             <a href="https://www.youtube.com/channel/UCSMwzDBt239V0ddFbWByxfQ" target="_blank" data-toggle="tooltip" data-placement="top" title="Youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
                         </div>
                     </div>
