@@ -5,8 +5,15 @@
  $categoria = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` ");
  $categoria->execute();
  $categoria = $categoria->fetchAll(); 
+
+ $produtos = MySql::conectar()->prepare("SELECT * FROM `produtos` ");
+ $produtos->execute();
+ $produtos = $produtos->fetchAll();
+
  
  ?>
+ 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -30,6 +37,7 @@
 </head>
 
 <body>
+
 <base base="<?php echo INCLUDE_PATH; ?>" />
     <?php
         $url = isset($_GET['url']) ? $_GET['url'] : 'home';
@@ -45,12 +53,19 @@
 
     ?>
     <!-- ##### Header Area Start ##### -->
+<div class="sucesso">Cadastro efetuado com sucesso!</div><!--sucesso-->
+<div class="overlay-loading">
+    <img src="<?php echo INCLUDE_PATH ?>img/ajax-loader.gif" />
+</div> <!--overlay-loading-->  
 <header class="header_area">
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
-                <a class="nav-brand" href="<?php echo INCLUDE_PATH; ?>"><img src="<?php echo INCLUDE_PATH; ?>img/core-img/logo.png" alt=""></a>
+                <div class="logo">
+                    <a class="nav-brand " href="<?php echo INCLUDE_PATH; ?>">ESSENCIAL</a>
+                    <a class="log" href="<?php echo INCLUDE_PATH; ?>">cursos online</a>
+                </div>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
                     <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -64,37 +79,7 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a href="#">Cursos</a>
-                                <div class="megamenu">
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Culinária</li>
-                                        <li><a href="<?php INCLUDE_PATH; ?>loja">Dresses</a></li>
-                                        <li><a href="<?php INCLUDE_PATH; ?>loja">Blouses &amp; Shirts</a></li>
-                                        <li><a href="<?php INCLUDE_PATH; ?>loja">T-shirts</a></li>
-                                        <li><a href="<?php INCLUDE_PATH; ?>loja">Rompers</a></li>
-                                        <li><a href="<?php INCLUDE_PATH; ?>loja">Bras &amp; Panties</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Informática</li>
-                                        <li><a href="shop.html">T-Shirts</a></li>
-                                        <li><a href="shop.html">Polo</a></li>
-                                        <li><a href="shop.html">Shirts</a></li>
-                                        <li><a href="shop.html">Jackets</a></li>
-                                        <li><a href="shop.html">Trench</a></li>
-                                    </ul>
-                                    <ul class="single-mega cn-col-4">
-                                        <li class="title">Saúde e bem estar</li>
-                                        <li><a href="shop.html">Dresses</a></li>
-                                        <li><a href="shop.html">Shirts</a></li>
-                                        <li><a href="shop.html">T-shirts</a></li>
-                                        <li><a href="shop.html">Jackets</a></li>
-                                        <li><a href="shop.html">Trench</a></li>
-                                    </ul>
-                                    <div class="single-mega cn-col-4">
-                                        <img src="<?php echo INCLUDE_PATH;?>img/bg-img/bg-6.jpg" alt="">
-                                    </div>
-                                </div>
-                            </li>
+                            <li><a href="<?php echo INCLUDE_PATH; ?>loja">Cursos</a></li>
                             <li><a href="<?php echo INCLUDE_PATH; ?>loja">Categorias</a>
                                 <ul class="dropdown">
                                 <?php
@@ -124,17 +109,17 @@
                     </form>
                 </div>
                 <!-- Favourite Area -->
-                <div class="favourite-area">
+                <!-- <div class="favourite-area">
                     <a href="#"><img src="<?php echo INCLUDE_PATH;?>img/core-img/heart.svg" alt=""></a>
-                </div>
+                </div> -->
                 <!-- User Login Info -->
-                <div class="user-login-info">
+                <!-- <div class="user-login-info">
                     <a href="#"><img src="<?php echo INCLUDE_PATH;?>img/core-img/user.svg" alt=""></a>
-                </div>
+                </div> -->
                 <!-- Cart Area -->
-                <div class="cart-area">
+                <!-- <div class="cart-area">
                     <a href="#" id="essenceCartBtn"><img src="<?php echo INCLUDE_PATH;?>img/core-img/bag.svg" alt=""> <span>3</span></a>
-                </div>
+                </div> -->
             </div>
 
         </div>
@@ -169,7 +154,10 @@
                     <div class="single_widget_area d-flex mb-30">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="<?php INCLUDE_PATH ?>"><img src="<?php echo INCLUDE_PATH;?>img/core-img/logo2.png" alt=""></a>
+                            <div class="logo">
+                                <a class="nav-brand " href="<?php echo INCLUDE_PATH; ?>">ESSENCIAL</a>
+                                <!-- <a class="log" href="<?php echo INCLUDE_PATH; ?>">cursos online</a> -->
+                            </div>
                         </div>
                         <!-- Footer Menu -->
                         <div class="footer_menu">
@@ -185,12 +173,14 @@
                 <div class="col-12 col-md-6">
                     <div class="single_widget_area mb-30">
                         <ul class="footer_widget_menu">
-                            <li><a href="#">Order Status</a></li>
-                            <li><a href="#">Payment Options</a></li>
-                            <li><a href="#">Shipping and Delivery</a></li>
-                            <li><a href="#">Guides</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Use</a></li>
+                        <?php
+                          $categoria = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` ");
+                          $categoria->execute();
+                          $categoria = $categoria->fetchAll();  
+                            foreach($categoria as $key => $value){
+                                ?>
+                            <li><a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $value['slug']; ?>"> <?php echo $value['nome']; ?></a></li>
+                             <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -201,12 +191,14 @@
                 <div class="col-12 col-md-6">
                     <div class="single_widget_area">
                         <div class="footer_heading mb-30">
-                            <h6>Subscribe</h6>
+                            <h6>Receba nossas novidades</h6>
                         </div>
+                    
                         <div class="subscribtion_form">
-                            <form action="#" method="post">
-                                <input type="email" name="mail" class="mail" placeholder="Your email here">
-                                <button type="submit" class="submit"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+                            <form class="ajax-form" method="post">
+                                <input type="email" name="email" class="mail" placeholder="Seu e-mail..." required>
+                                <input type="hidden" name="identificador" value="form_home" />
+                                <button type="submit" name="acao" class=""><i style="color:black;" class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
                             </form>
                         </div>
                     </div>
@@ -215,11 +207,11 @@
                 <div class="col-12 col-md-6">
                     <div class="single_widget_area">
                         <div class="footer_social_area">
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                            <a href="#" data-toggle="tooltip" data-placement="top" title="Youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+                            <a href="https://www.facebook.com/sitedansite" target="_blank" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a href="https://www.facebook.com/sitedansite" target="_blank" data-toggle="tooltip" data-placement="top" title="Instagram"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <!-- <i href="#" target="_blank" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a> -->
+                            <!-- <i href="#" target="_blank" data-toggle="tooltip" data-placement="top" title="Pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a> -->
+                            <a href="https://www.youtube.com/channel/UCSMwzDBt239V0ddFbWByxfQ" target="_blank" data-toggle="tooltip" data-placement="top" title="Youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -229,7 +221,7 @@
                 <div class="col-md-12 text-center">
                     <p>
                       
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script>Todos os direitos reservados | Desenvolvido por <a href="https://sitedan.com.br" target="_blank"> SiteDan</a>
+    Copyright &copy;<script>document.write(new Date().getFullYear());</script>Todos os direitos reservados | Desenvolvido por <a class="copy" href="https://sitedan.com.br" target="_blank"> SiteDan</a>
   
                     </p>
                 </div>
@@ -252,6 +244,8 @@
     <!-- Active js -->
     <script src="<?php echo INCLUDE_PATH;?>js/active.js"></script>
     <script src="<?php echo INCLUDE_PATH; ?>js/constants.js"></script>
+    <script src="<?php echo INCLUDE_PATH; ?>js/scroll.js"></script>
+
 
     <?php
         if(is_array($url) && strstr($url[0],'loja') !== false){
