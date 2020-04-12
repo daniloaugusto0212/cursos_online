@@ -32,14 +32,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Danilo Augusto" >
-    <meta name="keywords" content="online milionário, cursos online, online, categorias, saúde, beleza, emagrecimento, dietas, moda, marketing digital, hotmart, cursos hotmart, estudos, tecnologia">
-
-    <!-- Title  -->
+    <meta name="keywords" content="online milionário, cursos online, online, categorias, saúde, beleza, emagrecimento, dietas, moda, marketing digital, hotmart, cursos hotmart, estudos, tecnologia">    
     <title>Dansol - Cursos online</title>
-
     <!-- Favicon  -->
     <link rel="icon" href="<?php echo INCLUDE_PATH; ?>img/core-img/favicon.ico">
-
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="<?php echo INCLUDE_PATH; ?>css/core-style.css">
     <link rel="stylesheet" href="<?php echo INCLUDE_PATH; ?>style.css">
