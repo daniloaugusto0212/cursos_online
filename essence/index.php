@@ -18,14 +18,24 @@
 <html lang="pt-br">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163479982-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163479982-1');
+</script>
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="author" content="Danilo Augusto" >
+    <meta name="keywords" content="online milionário, cursos online, online, categorias, saúde, beleza, emagrecimento, dietas, moda, marketing digital, hotmart, cursos hotmart, estudos, tecnologia">
 
     <!-- Title  -->
-    <title>Essence - Cursos online</title>
+    <title>Dansol - Cursos online</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="<?php echo INCLUDE_PATH; ?>img/core-img/favicon.ico">
@@ -53,10 +63,7 @@
 
     ?>
     <!-- ##### Header Area Start ##### -->
-<div class="sucesso">Cadastro efetuado com sucesso!</div><!--sucesso-->
-<div class="overlay-loading">
-    <img src="<?php echo INCLUDE_PATH ?>img/ajax-loader.gif" />
-</div> <!--overlay-loading-->  
+
 <header class="header_area">
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
             <!-- Classy Menu -->
@@ -79,25 +86,29 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a href="<?php echo INCLUDE_PATH; ?>loja">Cursos</a></li>
-                            <li><a href="<?php echo INCLUDE_PATH; ?>loja">Categorias</a>
+                            <li><a title="cursos" href="<?php echo INCLUDE_PATH; ?>loja">Cursos</a></li>
+                            <li><a title="categorias" href="<?php echo INCLUDE_PATH; ?>loja">Categorias</a>
                                 <ul class="dropdown">
                                 <?php
                                 foreach($categoria as $key => $value){
                                     ?>
-                                    <li><a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $value['slug']; ?>"> <?php echo $value['nome']; ?></a></li>
+                                    <li><a title="<?php echo $value['nome']; ?>" href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $value['slug']; ?>"> <?php echo $value['nome']; ?></a></li>
                                 <?php } ?>
                                     
                                 </ul>
                             </li>
-                            <li><a href="<?php INCLUDE_PATH ?>quem-somos">Quem somos</a></li>
-                            <li><a href="<?php INCLUDE_PATH ?>contato">Contato</a></li>
+                            <li><a title="quem somos" href="<?php INCLUDE_PATH ?>quem-somos">Quem somos</a></li>
+                            <li><a title="contato" href="<?php INCLUDE_PATH ?>contato">Contato</a></li>
                             
                         </ul>
                     </div>
                     <!-- Nav End -->
                 </div>
             </nav>
+            <div class="sucesso">Cadastro efetuado com sucesso!</div><!--sucesso-->
+<div class="overlay-loading">
+    <img src="<?php echo INCLUDE_PATH ?>img/ajax-loader.gif" />
+</div> <!--overlay-loading-->  
 
             <!-- Header Meta Data -->
             <div class="header-meta d-flex clearfix justify-content-end">
@@ -161,8 +172,7 @@
                         </div>
                         <!-- Footer Menu -->
                         <div class="footer_menu">
-                            <ul>
-                                <li><a href="<?php echo INCLUDE_PATH;?>loja">Loja</a></li>
+                            <ul>                                
                                 <li><a href="<?php echo INCLUDE_PATH;?>quem-somos">Quem somos</a></li>
                                 <li><a href="<?php echo INCLUDE_PATH;?>contato">Contato</a></li>
                             </ul>

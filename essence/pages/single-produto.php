@@ -50,7 +50,7 @@
                 <!-- Cart & Favourite Box -->
                 <div class="cart-fav-box d-flex align-items-center">
                     <!-- Cart -->
-                    <a style="background-color: #158742;" href="https://go.hotmart.com/G26253346U" class="btn essence-btn">Comprar</a>
+                    <a style="background-color: #158742;" href="<?php echo $post['link'];?>" class="btn essence-btn">Comprar</a>
                                 <!-- Hover Content -->
                     <!-- Favourite -->
                     <div class="product-favourite ml-4">

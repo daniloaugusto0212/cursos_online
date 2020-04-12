@@ -107,11 +107,15 @@ $produtos = $produtos->fetchAll();
     <!-- ##### Welcome Area End ##### -->
 
     <!-- ##### Top Catagory Area Start ##### -->
-    <div class="top_catagory_area section-padding-80 clearfix">
+    <div class="top_catagory_area clearfix categ">
         <div class="container">
+            <div class="text-center">
+                <h3>Navegue pelas categorias</h3>
+            </div>
             <div class="row justify-content-center">
+            
                 <?php 
-                for ($i=0; $i < 3; $i++) { 
+                for ($i=0; $i < 5; $i++) { 
                     ?>
                 
                 <!-- Categorias da home-->
@@ -130,7 +134,7 @@ $produtos = $produtos->fetchAll();
     <!-- ##### Top Catagory Area End ##### -->
 
     <!-- Curso destaque-->
-    <div class="cta-area">
+    <!-- <div class="cta-area">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -146,7 +150,7 @@ $produtos = $produtos->fetchAll();
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- ##### CTA Area End ##### -->
 
     <!-- Cursos da home(mais populares) -->
@@ -218,7 +222,7 @@ $produtos = $produtos->fetchAll();
                     <div class="popular-products-slides owl-carousel">
                         <?php                        
                         
-                            for ($i=0; $i < 5; $i++) {    
+                            for ($i=4; $i < 9; $i++) {    
                                 $sql = MySql::conectar()->prepare("SELECT `slug` FROM `tb_site.categorias` WHERE id = ?");
                                 $sql->execute(array($produtos[$i]['categoria_id']));
                                 $categoriaNome = $sql->fetch()['slug'];                             

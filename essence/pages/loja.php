@@ -231,7 +231,7 @@
                     <!-- Pagination -->
                     <nav aria-label="navigation text-center">
                         <ul class="pagination mt-50 mb-70 ">
-                            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
+                            <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li> -->
                             <?php
                                 if(!isset($_POST['parametro'])){
                                 for($i = 1; $i <= $totalPaginas; $i++){
@@ -244,7 +244,7 @@
                             }
                              ?>                        
                             
-                            <li class="page-item"><a class="page-link" href=""><i class="fa fa-angle-right"></i></a></li>
+                            <!-- <li class="page-item"><a class="page-link" href=""><i class="fa fa-angle-right"></i></a></li> -->
                         </ul>
                     </nav>
                 </div>

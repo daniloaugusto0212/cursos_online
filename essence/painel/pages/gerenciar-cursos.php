@@ -13,7 +13,7 @@
         Painel::orderItem('produtos',$_GET['order'],$_GET['id']);
     }
     $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-    $porPagina = 10;
+    $porPagina = 50;
 
     $cursos = Painel::selectAll('produtos',($paginaAtual - 1) * $porPagina,$porPagina);
     

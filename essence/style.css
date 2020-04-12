@@ -79,6 +79,14 @@
     color: black!important;
 }
 
+.categ{
+    margin-top: 40px;
+}
+
+.categoria_home{
+    padding-top: 25px;
+}
+
 img.carrossel{
     min-width: 300px;
     max-height: 600px;
@@ -172,7 +180,11 @@ border-bottom: 15px solid #ccc;
         .contato-container{    
             padding: 40px 15px;
             
-            }
+        }
+        img.carrossel{
+            min-width: 300px;
+            max-height: 600px;
+        }
         
     }
 

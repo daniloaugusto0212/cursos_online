@@ -16,7 +16,7 @@
         Painel::orderItem('tb_site.categorias',$_GET['order'],$_GET['id']);
     }
     $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
-    $porPagina = 4;
+    $porPagina = 30;
 
     $categorias = Painel::selectAll('tb_site.categorias',($paginaAtual - 1) * $porPagina,$porPagina);
     
