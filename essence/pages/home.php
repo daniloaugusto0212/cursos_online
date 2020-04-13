@@ -192,7 +192,7 @@ $produtos = $produtos->fetchAll();
                             <!-- Product Description -->
                             <div class="product-description">
                                 
-                                <a href="<?php echo INCLUDE_PATH ?>single-produto">
+                                <a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categoriaNome; ?>/<?php echo $produtos[$i]['slug']; ?>">
                                     <h6><?php echo $produtos[$i]['nome']; ?> </h6>
                                 </a>
                                 <p class="product-price"><span class="old-price"><?php echo $produtos[$i]['preco']; ?></span><?php echo $produtos[$i]['preco_promo']; ?></p>
@@ -243,7 +243,7 @@ $produtos = $produtos->fetchAll();
                             <!-- Product Description -->
                             <div class="product-description">
                                 
-                                <a href="<?php echo INCLUDE_PATH ?>single-produto">
+                                <a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categoriaNome; ?>/<?php echo $produtos[$i]['slug']; ?>">
                                     <h6><?php echo $produtos[$i]['nome']; ?> </h6>
                                 </a>
                                 <p class="product-price"><span class="old-price"><?php echo $produtos[$i]['preco']; ?></span><?php echo $produtos[$i]['preco_promo']; ?></p>

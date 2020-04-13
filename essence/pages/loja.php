@@ -206,7 +206,7 @@
                                     <!-- Product Description -->
                                     <div class="product-description">
                                         
-                                        <a href="<?php INCLUDE_PATH ?>single-produto">
+                                        <a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>">
                                             <h6><?php echo $value['nome']; ?></h6>
                                         </a>
                                         <p class="product-price"><span class="old-price"><?php echo $value['preco']; ?></span> <?php echo $value['preco_promo']; ?></p>
