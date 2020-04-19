@@ -13,7 +13,7 @@
     --------------------------------------- */
 
 .product-img img{
-    min-height: 365px;
+    min-height: 365px!important;
 }
 
 .fa-long-arrow-right{
@@ -89,7 +89,7 @@
 
 img.carrossel{
     min-width: 300px;
-    max-height: 600px;
+    max-height: 400px;
 }
 
 .contato-container{    
@@ -134,59 +134,94 @@ border-bottom: 15px solid #ccc;
     margin-top: 40px;
 }
 
-   .footer-logo .logo a{
-       color: white!important;
-   }
-
-   .footer-logo .logo a.nav-brand{
+.footer-logo .logo a{
     color: white!important;
-    font-size: 25px;
-    }
+}
 
-    .footer-logo .logo a.log{
-        color: white!important;
-        width: 2000px;
-    }
+.footer-logo .logo a.nav-brand{
+color: white!important;
+font-size: 25px;
+}
 
-    a.copy{
-        font-size: 20px;
-        color: #FF084E;
-    }
+.footer-logo .logo a.log{
+    color: white!important;
+    width: 2000px;
+}
 
-   @media screen and (max-width: 1024px){
-    .logo{
-        
+a.copy{
+    font-size: 20px;
+    color: #FF084E;
+}
+
+@media screen and (max-width: 1024px){
+    .logo{        
         margin-right: 10px;
     }
+    .product-img img{
+        min-height: 365px!important;
+    }
     
-    }
 
-    @media screen and (max-width: 990px){
-        .logo{
-            
-            margin-right: 65px;
-        }
+}
+
+@media screen and (max-width: 990px){
+    .logo{        
+        margin-right: 65px;
+    }
+    .product-img img{
+        min-height: 400px!important;
+        max-height: 400px!important;
+    }
+    
+    
+    
+}
+
+@media screen and (max-width: 375px){
+    .logo{
+        
+        padding-top: 35px;
+    }
+    .product-img img{
+        min-height: 365px!important;
+        max-height: 365px!important;
+    }
+    
+    .categoria_home{
+        padding-bottom: 15px;
+    }
+    .contato-container{    
+        padding: 40px 15px;
         
     }
-
-    @media screen and (max-width: 768px){
-        .logo{
-            
-            padding-top: 35px;
-        }
-        .categoria_home{
-            padding-bottom: 15px;
-        }
-        .contato-container{    
-            padding: 40px 15px;
-            
-        }
-        img.carrossel{
-            min-width: 300px;
-            max-height: 600px;
-        }
+    img.carrossel{
+        min-width: 300px;
+        max-height: 600px;
+    }
+    
+}
+@media screen and (max-width: 360px){
+    .logo{
+        
+        padding-top: 35px;
+    }
+    .product-img img{
+        min-height: 365px!important;
+    }
+    
+    .categoria_home{
+        padding-bottom: 15px;
+    }
+    .contato-container{    
+        padding: 40px 15px;
         
     }
+    img.carrossel{
+        min-width: 300px;
+        max-height: 600px;
+    }
+    
+}
 
 
 

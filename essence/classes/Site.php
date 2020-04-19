@@ -38,5 +38,14 @@
             }
         }
 
+        public static function contadorDet(){
+            //setcookie('visita','true',time() - 1 ); //Limpar cookie manualmente
+             if (!isset($_COOKIE['visita'])) {
+                 setcookie('visita','true',time() + (60*60*24)); //Cookie expira em 1 dia
+                 $sql = MySql::conectar()->prepare("INSERT INTO `visitas.detalhes` VALUES (null,?,?)");
+                 $sql->execute(array($_SERVER['REMOTE_ADDR'],date('Y-m-d')));
+             }
+         }
+
     }
 ?>

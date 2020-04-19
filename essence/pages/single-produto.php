@@ -1,4 +1,5 @@
-<?php
+<?php    
+    Site::contadorDet();
     $url = explode('/',$_GET['url']);
 
 	$verifica_categoria = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` WHERE slug = ?");

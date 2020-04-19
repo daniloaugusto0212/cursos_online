@@ -1,6 +1,11 @@
 <?php
 	$usuariosOnline = Painel::listarUsuariosOnline();
 
+	$pegarVisitasDetalhes = MySql::conectar()->prepare("SELECT * FROM `visitas.detalhes`");
+	$pegarVisitasDetalhes->execute();
+
+	$pegarVisitasDetalhes = $pegarVisitasDetalhes->rowCount();
+
 	$pegarVisitasTotais = MySql::conectar()->prepare("SELECT * FROM `tb_admin.visitas`");
 	$pegarVisitasTotais->execute();
 
@@ -33,6 +38,14 @@
 				<div class="box-metrica-wraper">
 					<h2>Visitas Hoje</h2>
 					<p><?php echo $pegarVisitasHoje; ?></p>
+				</div><!--box-metrica-wraper-->
+			</div><!--box-metrica-single-->
+			<div class="clear"></div>
+
+			<div style="background:blue" class="box-metrica-single">
+				<div class="box-metrica-wraper">
+					<h2>Visitas Pag. Detalhes</h2>
+					<p><?php echo $pegarVisitasDetalhes; ?></p>
 				</div><!--box-metrica-wraper-->
 			</div><!--box-metrica-single-->
 			<div class="clear"></div>
