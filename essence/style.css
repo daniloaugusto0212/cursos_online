@@ -74,6 +74,11 @@
     height: 30px;
 }
 
+.logo a.log h1{
+    font-weight: lighter;
+    font-size: 18px;
+}
+
 .hero-content h6{
     font-size: 30px!important;
     color: black!important;

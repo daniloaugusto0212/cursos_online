@@ -8,31 +8,31 @@
 
  $produtos = MySql::conectar()->prepare("SELECT * FROM `produtos` ");
  $produtos->execute();
- $produtos = $produtos->fetchAll();
-
- 
+ $produtos = $produtos->fetchAll(); 
  ?>
- 
-
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163479982-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-163479982-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-  gtag('config', 'UA-163479982-1');
-</script>
+    gtag('config', 'UA-163479982-1');
+    </script>
     <meta charset="UTF-8">
-    <meta name="description" content="">
+    <meta name="description" content="Site de vendas dos cursos oferecido pela hotmart.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Danilo Augusto" >
-    <meta name="keywords" content="online milionário, cursos online, online, categorias, saúde, beleza, emagrecimento, dietas, moda, marketing digital, hotmart, cursos hotmart, estudos, tecnologia">    
+    <meta name="keywords" content="online milionário, cursos online, online, categorias, saúde, beleza, emagrecimento, dietas, moda, marketing digital, hotmart, cursos hotmart, estudos, tecnologia">  
+    <meta property="og:image" content="<?php echo INCLUDE_PATH; ?>img/bg-img/bg-1.jpg"/>
+	<meta property="og:title" content="Cursos Online">		
+	<meta property="og:url" content="<?php echo INCLUDE_PATH; ?>"/>
+
+	<link rel="canonical" href="<?php echo INCLUDE_PATH; ?>">  
     <title>Dansol - Cursos online</title>
     <!-- Favicon  -->
     <link rel="icon" href="<?php echo INCLUDE_PATH; ?>img/core-img/favicon.ico">
@@ -67,7 +67,7 @@
                 <!-- Logo -->
                 <div class="logo">
                     <a class="nav-brand " href="<?php echo INCLUDE_PATH; ?>">DANSOL</a>
-                    <a class="log" href="<?php echo INCLUDE_PATH; ?>">cursos online</a>
+                    <a class="log" href="<?php echo INCLUDE_PATH; ?>"><h1>cursos online</h1></a>
                 </div>
                 <!-- Navbar Toggler -->
                 <div class="classy-navbar-toggler">
