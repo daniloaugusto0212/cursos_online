@@ -114,7 +114,7 @@ $produtos = $produtos->fetchAll();
                                 <a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categoriaNome; ?>/<?php echo $produtos[$i]['slug']; ?>">
                                     <h6><?php echo $produtos[$i]['nome']; ?> </h6>
                                 </a>
-                                <p class="product-price"><span class="old-price"><?php echo $produtos[$i]['preco']; ?></span><?php echo $produtos[$i]['preco_promo']; ?></p>
+                                <p class="product-price"><span class="old-price">R$<?php echo $produtos[$i]['preco']; ?></span>R$<?php echo $produtos[$i]['preco_promo']; ?></p>
                                 <a style="background-color: #158742;" href="<?php echo $produtos[$i]['link']; ?>" class="btn essence-btn">Comprar</a>
                                 <!-- Hover Content -->
                                 <div class="hover-content">
@@ -165,7 +165,7 @@ $produtos = $produtos->fetchAll();
                                 <a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categoriaNome; ?>/<?php echo $produtos[$i]['slug']; ?>">
                                     <h6><?php echo $produtos[$i]['nome']; ?> </h6>
                                 </a>
-                                <p class="product-price"><span class="old-price"><?php echo $produtos[$i]['preco']; ?></span><?php echo $produtos[$i]['preco_promo']; ?></p>
+                                <p class="product-price"><span class="old-price">R$<?php echo $produtos[$i]['preco']; ?></span>R$<?php echo $produtos[$i]['preco_promo']; ?></p>
                                 <a style="background-color: #158742;" href="<?php echo $produtos[$i]['link']; ?>" class="btn essence-btn">Comprar</a>
                                 <!-- Hover Content -->
                                 <div class="hover-content">

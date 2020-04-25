@@ -7,7 +7,7 @@
 	$categoria = $categoria->fetch();
 ?>
 <?php
-    $porPagina = 6;
+    $porPagina = 9;
     if(!isset($_POST['parametro'])){
     if($categoria['nome'] == ''){
         $cat = 'Visualizando todos os Cursos';
@@ -209,7 +209,7 @@
                                         <a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>">
                                             <h6><?php echo $value['nome']; ?></h6>
                                         </a>
-                                        <p class="product-price"><span class="old-price"><?php echo $value['preco']; ?></span> <?php echo $value['preco_promo']; ?></p>
+                                        <p class="product-price"><span class="old-price">R$<?php echo $value['preco']; ?></span> R$<?php echo $value['preco_promo']; ?></p>
 
                                         <a style="background-color: #158742;" href="<?php echo $value['link']; ?>" class="btn essence-btn">Comprar</a>
                                         <div class="hover-content">
