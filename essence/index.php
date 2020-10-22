@@ -1,14 +1,14 @@
 <?php
- include('config.php');
- Site::updateUsuarioOnline(); 
- Site::contador();
- $categoria = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` ");
- $categoria->execute();
- $categoria = $categoria->fetchAll(); 
+    include('config.php');
+    Site::updateUsuarioOnline(); 
+    Site::contador();
+    $categoria = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` ");
+    $categoria->execute();
+    $categoria = $categoria->fetchAll(); 
 
- $produtos = MySql::conectar()->prepare("SELECT * FROM `produtos` ");
- $produtos->execute();
- $produtos = $produtos->fetchAll(); 
+    $produtos = MySql::conectar()->prepare("SELECT * FROM `produtos` ");
+    $produtos->execute();
+    $produtos = $produtos->fetchAll(); 
  ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -28,23 +28,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Danilo Augusto" >
     <meta name="keywords" content="online milionário, cursos online, online, categorias, saúde, beleza, emagrecimento, dietas, moda, marketing digital, hotmart, cursos hotmart, estudos, tecnologia">  
-    <meta property="og:image" content="<?php echo INCLUDE_PATH; ?>img/bg-img/bg-1.jpg"/>
+    <meta property="og:image" content="<?= INCLUDE_PATH; ?>img/bg-img/bg-1.jpg"/>
 	<meta property="og:title" content="Cursos Online">		
-	<meta property="og:url" content="<?php echo INCLUDE_PATH; ?>"/>
+	<meta property="og:url" content="<?= INCLUDE_PATH; ?>"/>
 
-	<link rel="canonical" href="<?php echo INCLUDE_PATH; ?>">  
+	<link rel="canonical" href="<?= INCLUDE_PATH; ?>">  
     <title>Dansol - Cursos online</title>
     <!-- Favicon  -->
-    <link rel="icon" href="<?php echo INCLUDE_PATH; ?>img/core-img/favicon.ico">
+    <link rel="icon" href="<?= INCLUDE_PATH; ?>img/core-img/favicon.ico">
     <!-- Core Style CSS -->
-    <link rel="stylesheet" href="<?php echo INCLUDE_PATH; ?>css/core-style.css">
-    <link rel="stylesheet" href="<?php echo INCLUDE_PATH; ?>style.css">
-
+    <link rel="stylesheet" href="<?= INCLUDE_PATH; ?>css/core-style.css">
+    <link rel="stylesheet" href="<?= INCLUDE_PATH; ?>style.css">
 </head>
 
 <body>
-
-<base base="<?php echo INCLUDE_PATH; ?>" />
+    <base base="<?= INCLUDE_PATH; ?>" />
     <?php
         $url = isset($_GET['url']) ? $_GET['url'] : 'home';
         switch ($url) {
@@ -60,18 +58,13 @@
     ?>
     <!-- ##### Header Area Start ##### -->
 
-<header class="header_area">
+    <header class="header_area">
         <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
-            <!-- Classy Menu -->
             <nav class="classy-navbar" id="essenceNav">
                 <!-- Logo -->
                 <div class="logo">
-                    <a class="nav-brand " href="<?php echo INCLUDE_PATH; ?>">DANSOL</a>
-                    <a class="log" href="<?php echo INCLUDE_PATH; ?>"><h1>cursos online</h1></a>
-                </div>
-                <!-- Navbar Toggler -->
-                <div class="classy-navbar-toggler">
-                    <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    <a class="nav-brand " href="<?= INCLUDE_PATH; ?>">DANSOL</a>
+                    <a class="log" href="<?= INCLUDE_PATH; ?>"><h1>cursos online</h1></a>
                 </div>
                 <!-- Menu -->
                 <div class="classy-menu">
@@ -82,56 +75,28 @@
                     <!-- Nav Start -->
                     <div class="classynav">
                         <ul>
-                            <li><a title="cursos" href="<?php echo INCLUDE_PATH; ?>loja">Cursos</a></li>
-                            <li><a title="categorias" href="<?php echo INCLUDE_PATH; ?>loja">Categorias</a>
+                            <li><a title="cursos" href="<?= INCLUDE_PATH; ?>loja">Cursos</a></li>
+                            <li><a title="categorias" href="<?= INCLUDE_PATH; ?>loja">Categorias</a>
                                 <ul class="dropdown">
                                 <?php
                                 foreach($categoria as $key => $value){
                                     ?>
-                                    <li><a title="<?php echo $value['nome']; ?>" href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $value['slug']; ?>"> <?php echo $value['nome']; ?></a></li>
+                                    <li><a title="<?= $value['nome']; ?>" href="<?= INCLUDE_PATH; ?>loja/<?= $value['slug']; ?>"> <?= $value['nome']; ?></a></li>
                                 <?php } ?>
-                                    
                                 </ul>
                             </li>
                             <li><a title="quem somos" href="<?php INCLUDE_PATH ?>quem-somos">Quem somos</a></li>
                             <li><a title="contato" href="<?php INCLUDE_PATH ?>contato">Contato</a></li>
-                            
                         </ul>
                     </div>
-                    <!-- Nav End -->
                 </div>
             </nav>
             <div class="sucesso">Cadastro efetuado com sucesso!</div><!--sucesso-->
-<div class="overlay-loading">
-    <img src="<?php echo INCLUDE_PATH ?>img/ajax-loader.gif" />
-</div> <!--overlay-loading-->  
-
-            <!-- Header Meta Data -->
-            <div class="header-meta d-flex clearfix justify-content-end">
-                <!-- Search Area -->
-                <!-- <div class="search-area">
-                    <form  method="post">
-                        <input type="text" name="parametro" id="headerSearch" placeholder="Pesquisar...">
-                        <button type="submit" name="buscar"><i class="fa fa-search" aria-hidden="true"></i></button>
-                    </form>
-                </div> -->
-                <!-- Favourite Area -->
-                <!-- <div class="favourite-area">
-                    <a href="#"><img src="<?php echo INCLUDE_PATH;?>img/core-img/heart.svg" alt=""></a>
-                </div> -->
-                <!-- User Login Info -->
-                <!-- <div class="user-login-info">
-                    <a href="#"><img src="<?php echo INCLUDE_PATH;?>img/core-img/user.svg" alt=""></a>
-                </div> -->
-                <!-- Cart Area -->
-                <!-- <div class="cart-area">
-                    <a href="#" id="essenceCartBtn"><img src="<?php echo INCLUDE_PATH;?>img/core-img/bag.svg" alt=""> <span>3</span></a>
-                </div> -->
-            </div>
-
-        </div>
+            <div class="overlay-loading">
+                <img src="<?= INCLUDE_PATH ?>img/ajax-loader.gif" />
+            </div> <!--overlay-loading--> 
+        </div> 
     </header>
-    <!-- ##### Header Area End ##### -->
     <?php
         if (file_exists('pages/'.$url.'.php')) {
             include('pages/'.$url.'.php');
@@ -151,8 +116,6 @@
         }           
    ?>
     
-
-    <!-- ##### Footer Area Start ##### -->
     <footer class="footer_area clearfix">
         <div class="container">
             <div class="row">
@@ -162,15 +125,15 @@
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
                             <div class="logo">
-                                <a class="nav-brand " href="<?php echo INCLUDE_PATH; ?>">DANSOL</a>
-                                <!-- <a class="log" href="<?php echo INCLUDE_PATH; ?>">cursos online</a> -->
+                                <a class="nav-brand " href="<?= INCLUDE_PATH; ?>">DANSOL</a>
+                                <!-- <a class="log" href="<?= INCLUDE_PATH; ?>">cursos online</a> -->
                             </div>
                         </div>
                         <!-- Footer Menu -->
                         <div class="footer_menu">
                             <ul>                                
-                                <li><a href="<?php echo INCLUDE_PATH;?>quem-somos">Quem somos</a></li>
-                                <li><a href="<?php echo INCLUDE_PATH;?>contato">Contato</a></li>
+                                <li><a href="<?= INCLUDE_PATH;?>quem-somos">Quem somos</a></li>
+                                <li><a href="<?= INCLUDE_PATH;?>contato">Contato</a></li>
                             </ul>
                         </div>
                     </div>
@@ -185,7 +148,7 @@
                           $categoria = $categoria->fetchAll();  
                             foreach($categoria as $key => $value){
                                 ?>
-                            <li><a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $value['slug']; ?>"> <?php echo $value['nome']; ?></a></li>
+                            <li><a href="<?= INCLUDE_PATH; ?>loja/<?= $value['slug']; ?>"> <?= $value['nome']; ?></a></li>
                              <?php } ?>
                         </ul>
                     </div>
@@ -226,13 +189,9 @@
                 </div>
             </div>
 
-<div class="row mt-5">
+            <div class="row mt-5">
                 <div class="col-md-12 text-center">
-                    <p>
-                      
-    Copyright &copy;<script>document.write(new Date().getFullYear());</script>Todos os direitos reservados | Desenvolvido por <a class="copy" href="https://sitedan.com.br" target="_blank"> SiteDan</a>
-  
-                    </p>
+                    <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>Todos os direitos reservados | Desenvolvido por <a class="copy" href="https://sitedan.com.br" target="_blank"> SiteDan</a></p>
                 </div>
             </div>
 
@@ -241,19 +200,19 @@
     <!-- ##### Footer Area End ##### -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
-    <script src="<?php echo INCLUDE_PATH;?>js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="<?= INCLUDE_PATH;?>js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->
-    <script src="<?php echo INCLUDE_PATH;?>js/popper.min.js"></script>
+    <script src="<?= INCLUDE_PATH;?>js/popper.min.js"></script>
     <!-- Bootstrap js -->
-    <script src="<?php echo INCLUDE_PATH;?>js/bootstrap.min.js"></script>
+    <script src="<?= INCLUDE_PATH;?>js/bootstrap.min.js"></script>
     <!-- Plugins js -->
-    <script src="<?php echo INCLUDE_PATH;?>js/plugins.js"></script>
+    <script src="<?= INCLUDE_PATH;?>js/plugins.js"></script>
     <!-- Classy Nav js -->
-    <script src="<?php echo INCLUDE_PATH;?>js/classy-nav.min.js"></script>
+    <script src="<?= INCLUDE_PATH;?>js/classy-nav.min.js"></script>
     <!-- Active js -->
-    <script src="<?php echo INCLUDE_PATH;?>js/active.js"></script>
-    <script src="<?php echo INCLUDE_PATH; ?>js/constants.js"></script>
-    <script src="<?php echo INCLUDE_PATH; ?>js/scroll.js"></script>
+    <script src="<?= INCLUDE_PATH;?>js/active.js"></script>
+    <script src="<?= INCLUDE_PATH; ?>js/constants.js"></script>
+    <script src="<?= INCLUDE_PATH; ?>js/scroll.js"></script>
 
 
     <?php
@@ -276,8 +235,7 @@
         if($url == 'contato'){
     ?>
     <?php }?>
-    <!--<script src="<?php echo INCLUDE_PATH; ?>js/exemplo.js"></script>--> <!--script para carregar especialidades uma a uma-->
-    <script src="<?php echo INCLUDE_PATH; ?>js/formularios.js"></script>
+    <script src="<?= INCLUDE_PATH; ?>js/formularios.js"></script>
 
 </body>
 

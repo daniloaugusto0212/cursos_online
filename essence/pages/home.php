@@ -1,12 +1,6 @@
 <?php
-$categoria = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` ");
-$categoria->execute();
-$categoria = $categoria->fetchAll();
-
-$produtos = MySql::conectar()->prepare("SELECT * FROM `produtos` ORDER BY order_id");
-$produtos->execute();
-$produtos = $produtos->fetchAll();
-
+$categoria = Painel::selectAll('tb_site.categorias');
+$produtos = Painel::selectAll('produtos');
 ?>    
 
     <!-- ##### Welcome Area Start ##### -->
@@ -90,11 +84,8 @@ $produtos = $produtos->fetchAll();
                     <div class="popular-products-slides owl-carousel">
                         <?php                        
                         
-                            for ($i=0; $i <= 5; $i++) {    
-                                $sql = MySql::conectar()->prepare("SELECT `slug` FROM `tb_site.categorias` WHERE id = ?");
-                                $sql->execute(array($produtos[$i]['categoria_id']));
-                                $categoriaNome = $sql->fetch()['slug'];                             
-                                
+                            for ($i=0; $i <= 5; $i++) {   
+                                $categoriaNome = Painel::select('tb_site.categorias','id = ?', array($produtos[$i]['categoria_id']))['slug'];
                                 ?>
                         <!-- Single Product -->
                         <div class="single-product-wrapper">
@@ -142,10 +133,7 @@ $produtos = $produtos->fetchAll();
                         <?php                        
                         
                             for ($i=6; $i <= 11; $i++) {    
-                                $sql = MySql::conectar()->prepare("SELECT `slug` FROM `tb_site.categorias` WHERE id = ?");
-                                $sql->execute(array($produtos[$i]['categoria_id']));
-                                $categoriaNome = $sql->fetch()['slug'];                             
-                                
+                                $categoriaNome = Painel::select('tb_site.categorias','id = ?', array($produtos[$i]['categoria_id']))['slug'];
                                 ?>
                         <!-- Single Product -->
                         <div class="single-product-wrapper">

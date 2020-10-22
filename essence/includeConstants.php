@@ -12,15 +12,16 @@ $autoload = function($class){
 spl_autoload_register($autoload);
 
 //Localhost 
-    define('INCLUDE_PATH','http://localhost/gestao_clientes/');
-    define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
+define('INCLUDE_PATH','http://localhost/cursos_online/essence/');
+define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
 
-    define('BASE_DIR_PAINEL',__DIR__.'../painel');
-    define('HOST','localhost');
-    define('USER','root');
-    define('PASSWORD','');
-    define('DATABASE','Projeto_01');
-    define ('NOME_EMPRESA','Dansol');
+define('BASE_DIR_PAINEL',__DIR__.'/painel');
+     //Conectar com o banco de dados
+     define('HOST','localhost');
+     define('USER','root');
+     define('PASSWORD','');
+     define('DATABASE','cursos');
+ 
 
 
     ?>

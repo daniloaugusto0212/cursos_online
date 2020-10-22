@@ -24,27 +24,9 @@
     define('PASSWORD','');
     define('DATABASE','cursos');
 
-    
-
-/*
-    //Servidor hostinger
-   define('INCLUDE_PATH','http://projeto.dansol.com.br/');
-
-    define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
-    //Conectar com o banco de dados
-    define('HOST','localhost');
-    define('USER','u155647215_danilo');
-    define('PASSWORD','681015');
-    define('DATABASE','u155647215_projeto_01');
-*/
-    
 
     //Contantes para painel de controle
     define ('NOME_EMPRESA','Dansol');
-
-    
-    
-
     //Funções do painel
     function pegaCargo($indice){
       
