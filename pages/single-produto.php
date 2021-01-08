@@ -15,7 +15,7 @@
 		Painel::redirect(INCLUDE_PATH.'loja');
 	}
 
-	//É POR QUE MINHA NOTICIA EXISTE
+	//É POR QUE O CURSO EXITE
 	$post = $post->fetch();
 
 ?>
