@@ -63,21 +63,6 @@
     background: #dff2bf;
 }
 
-.logo{
-    width: 25%;
-    
-}
-
-.logo a{
-    color: black!important;
-    margin: 0!important;   
-    height: 30px;
-}
-
-.logo a.log h1{
-    font-weight: lighter;
-    font-size: 18px;
-}
 
 .hero-content h6{
     font-size: 30px!important;

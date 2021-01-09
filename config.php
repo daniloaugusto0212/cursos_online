@@ -13,31 +13,38 @@
    spl_autoload_register($autoload);
 
     //Localhost 
-    define('INCLUDE_PATH','http://localhost/cursos_online/');
-    define('INCLUDE_PATH_PAINEL',INCLUDE_PATH.'painel/');
+    define('INCLUDE_PATH', 'http://localhost/cursos_online/');
+    define('INCLUDE_PATH_PAINEL', INCLUDE_PATH . 'painel/');
 
-    define('BASE_DIR_PAINEL',__DIR__.'/painel');
+    define('BASE_DIR_PAINEL', __DIR__ . '/painel');
 
     //Conectar com o banco de dados
-    define('HOST','localhost');
-    define('USER','root');
-    define('PASSWORD','');
-    define('DATABASE','cursos');
+    define('HOST', 'localhost');
+    define('USER', 'root');
+    define('PASSWORD', '');
+    define('DATABASE', 'cursos');
 
 
     //Contantes para painel de controle
-    define ('NOME_EMPRESA','Dansol');
+    define ('NOME_EMPRESA', 'DanSol Cursos');
     //Funções do painel
-    function pegaCargo($indice){
+    function pegaCargo($indice) {
       
         return Painel::$cargos[$indice];
 
     }
 
+    function menuSelected($par){
+      $url = explode('/',@$_GET['url'])[0];
+      if ($url == $par) {
+        echo "active";
+      }
+    }
+
     function selecionadoMenu($par){
       $url = explode('/',@$_GET['url'])[0];
       if ($url == $par) {
-        echo 'class="menu-active"';
+        echo "class='menu-active'";
       }
     }
 

@@ -35,7 +35,7 @@ $produtos = Painel::selectAll('produtos');
                 <div class="col-12 col-sm-6 col-md-4 categoria_home">
                     <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $categoria[$i]['imagem']; ?>);">
                         <div class="catagory-content">
-                            <a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categoria[$i]['slug']; ?>"><?php echo $categoria[$i]['nome']; ?></a>
+                            <a href="<?php echo INCLUDE_PATH; ?>cursos/<?php echo $categoria[$i]['slug']; ?>"><?php echo $categoria[$i]['nome']; ?></a>
                         </div>
                     </div>
                 </div>
@@ -102,7 +102,7 @@ $produtos = Painel::selectAll('produtos');
                             <!-- Product Description -->
                             <div class="product-description">
                                 
-                                <a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categoriaNome; ?>/<?php echo $produtos[$i]['slug']; ?>">
+                                <a href="<?php echo INCLUDE_PATH; ?>cursos/<?php echo $categoriaNome; ?>/<?php echo $produtos[$i]['slug']; ?>">
                                     <h6><?php echo $produtos[$i]['nome']; ?> </h6>
                                 </a>
                                 <p class="product-price"><span class="old-price">R$<?php echo $produtos[$i]['preco']; ?></span>R$<?php echo $produtos[$i]['preco_promo']; ?></p>
@@ -113,7 +113,7 @@ $produtos = Painel::selectAll('produtos');
                                     <div class="add-to-cart-btn">
                                   
                                     
-                                        <a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categoriaNome; ?>/<?php echo $produtos[$i]['slug']; ?>" class="btn essence-btn">Detalhes</a>
+                                        <a href="<?php echo INCLUDE_PATH; ?>cursos/<?php echo $categoriaNome; ?>/<?php echo $produtos[$i]['slug']; ?>" class="btn essence-btn">Detalhes</a>
                                     
                                     </div>
                                 </div>
@@ -150,7 +150,7 @@ $produtos = Painel::selectAll('produtos');
                             <!-- Product Description -->
                             <div class="product-description">
                                 
-                                <a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categoriaNome; ?>/<?php echo $produtos[$i]['slug']; ?>">
+                                <a href="<?php echo INCLUDE_PATH; ?>cursos/<?php echo $categoriaNome; ?>/<?php echo $produtos[$i]['slug']; ?>">
                                     <h6><?php echo $produtos[$i]['nome']; ?> </h6>
                                 </a>
                                 <p class="product-price"><span class="old-price">R$<?php echo $produtos[$i]['preco']; ?></span>R$<?php echo $produtos[$i]['preco_promo']; ?></p>
@@ -161,7 +161,7 @@ $produtos = Painel::selectAll('produtos');
                                     <div class="add-to-cart-btn">
                                   
                                     
-                                        <a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categoriaNome; ?>/<?php echo $produtos[$i]['slug']; ?>" class="btn essence-btn">Detalhes</a>
+                                        <a href="<?php echo INCLUDE_PATH; ?>cursos/<?php echo $categoriaNome; ?>/<?php echo $produtos[$i]['slug']; ?>" class="btn essence-btn">Detalhes</a>
                                     
                                     </div>
                                 </div>

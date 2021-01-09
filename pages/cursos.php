@@ -2,12 +2,11 @@
     $url = explode('/',$_GET['url']);    
 	if(!isset($url[2])){
         $categoria = Painel::select('tb_site.categorias', 'slug = ?', array(@$url[1]));
-	print_r($categoria)
 ?>
     <?php
         $porPagina = 9;
         if(!isset($_POST['parametro'])){
-            if($categoria['nome'] == ''){
+            if (empty($categoria['nome'])) {
                 $cat = 'Visualizando todos os Cursos';
                 $totCursos = 'cursos disponíveis em todas as categorias';
                 $totProdutos = MySql::conectar()->prepare("SELECT `id` FROM `produtos`");
@@ -27,7 +26,7 @@
             }
 
             $query = "SELECT * FROM `produtos` ";
-            if($categoria['nome'] != ''){
+            if (!empty($categoria['nome'])) {
                 $categoria['id'] = (int)$categoria['id'];
                 $query.="WHERE categoria_id = $categoria[id]";
             }
@@ -41,7 +40,7 @@
                 }
             }
             $query2 = "SELECT * FROM `produtos` "; 
-            if($categoria['nome'] != ''){
+            if(!empty($categoria['nome'])) {
                     $categoria['id'] = (int)$categoria['id'];
                     $query2.="WHERE categoria_id = $categoria[id]";
             }
@@ -79,7 +78,7 @@
             $produtos = $sql->fetchAll();
         ?>     
 
-            <!-- #####  topo loja Start ##### -->
+            <!-- #####  topo cursos Start ##### -->
             <div class="breadcumb_area bg-img" style="background-image: url(<?php echo INCLUDE_PATH ?>img/bg-img/breadcumb.jpg);">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
@@ -91,7 +90,7 @@
                     </div>
                 </div>
             </div>
-            <!-- ##### topo loja  End ##### -->
+            <!-- ##### topo cursos  End ##### -->
 
             <!-- ##### Shop Grid Area Start ##### -->
             <section class="shop_grid_area section-padding-80">
@@ -117,11 +116,11 @@
                                             
                                             <!-- Single Item -->
                                             <li data-toggle="collapse" data-target="#<?php echo $categorias[$i]['nome']; 
-                                            ?>"><a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categorias[$i]['slug']; ?>"><?php echo $categorias[$i]['nome']; ?> </a>
+                                            ?>"><a href="<?php echo INCLUDE_PATH; ?>cursos/<?php echo $categorias[$i]['slug']; ?>"><?php echo $categorias[$i]['nome']; ?> </a>
                                                 
                                             </li>
                                             <?php } ?>
-                                            <li data-toggle="collapse" data-target="#"><a href="<?php echo INCLUDE_PATH; ?>loja/">Todas </a>
+                                            <li data-toggle="collapse" data-target="#"><a href="<?php echo INCLUDE_PATH; ?>cursos/">Todas </a>
                                             <!-- Single Item -->                                  
                                         
                                         </ul>
@@ -200,7 +199,7 @@
                                             <!-- Product Description -->
                                             <div class="product-description">
                                                 
-                                                <a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>">
+                                                <a href="<?php echo INCLUDE_PATH; ?>cursos/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>">
                                                     <h6><?php echo $value['nome']; ?></h6>
                                                 </a>
                                                 <p class="product-price"><span class="old-price">R$<?php echo $value['preco']; ?></span> R$<?php echo $value['preco_promo']; ?></p>
@@ -209,7 +208,7 @@
                                                 <div class="hover-content">
                                                     <!-- Detalhes -->
                                                     <div class="add-to-cart-btn">
-                                                        <a href="<?php echo INCLUDE_PATH; ?>loja/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>" class="btn essence-btn">Detalhes</a>
+                                                        <a href="<?php echo INCLUDE_PATH; ?>cursos/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>" class="btn essence-btn">Detalhes</a>
                                                     </div>
                                                 </div>
                                             
@@ -230,7 +229,7 @@
                                         if(!isset($_POST['parametro'])){
                                         for($i = 1; $i <= $totalPaginas; $i++){
                                             $catStr = $categoria['nome'] != '' ? '/'.$categoria['slug'] : '';
-                                            echo '<li class="page-item"><a class="page-link" href="'.INCLUDE_PATH.'loja'.$catStr.'?pagina='.$i.'">'.$i.'</a></li>';                                          
+                                            echo '<li class="page-item"><a class="page-link" href="'.INCLUDE_PATH.'cursos'.$catStr.'?pagina='.$i.'">'.$i.'</a></li>';                                          
                                         }
                                     }
                                     ?>                        

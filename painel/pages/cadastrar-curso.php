@@ -9,6 +9,7 @@
 				$categoria_id = $_POST['categoria_id'];
 				$nome = $_POST['nome'];
 				$descricao = $_POST['descricao'];
+				$keywords = $_POST['keywords'];
 				$preco = $_POST['preco'];
 				$preco_promo = $_POST['preco_promo'];
 				$capa = $_FILES['imagem'];
@@ -25,7 +26,7 @@
 						$capa3['tmp_name'] == '' || 
 						$capa4['tmp_name'] == '' || 
 						$capa5['tmp_name'] == ''){
-					Painel::alert('erro','A imagem de capa precisa ser selecionada.');
+					Painel::alert('erro','Todas as imagens precisam ser selecionadas.');
 				}else{
 					if(Painel::imagemValida($capa) ||
 					Painel::imagemValida($capa2) ||
@@ -41,7 +42,9 @@
 						$imagem4 = Painel::uploadFile($capa4);
 						$imagem5 = Painel::uploadFile($capa5);
 						$slug = Painel::generateSlug($nome);
-						$arr = ['categoria_id'=>$categoria_id,'nome'=>$nome,'descricao'=>$descricao, 
+						$arr = ['categoria_id'=>$categoria_id,'nome'=>$nome,
+						'descricao'=>$descricao, 
+						'keywords'=>$keywords,
 						'preco' => $preco, 
 						'preco_promo' => $preco_promo, 
 						'imagem'=>$imagem, 
@@ -94,6 +97,11 @@
 		<div class="form-group">
 			<label>Descrição:</label>
 			<textarea  name="descricao"><?php recoverPost('descricao'); ?></textarea>
+		</div>
+
+		<div class="form-group">
+			<label>Palavras Chave: <small>(separadas por vírgula - terminar com vírgula)</small></label>
+			<textarea  name="keywords"><?php recoverPost('keywords'); ?></textarea>
 		</div>
 
 		<div class="form-group">

@@ -18,6 +18,7 @@ if (isset($_GET['id'])) {
             //Enviei o meu formulário.               
             $nome = $_POST['nome'];
             $descricao = $_POST['descricao'];
+            $keywords = $_POST['keywords'];
             $preco = $_POST['preco'];
             $preco_promo = $_POST['preco_promo'];
             $imagem = $_FILES['imagem'];
@@ -32,7 +33,9 @@ if (isset($_GET['id'])) {
                         Painel::deleteFile($imagem_atual);
                         $imagem = Painel::uploadFile($imagem);
                         $slug = Painel::generateSlug($nome);
-                        $arr = ['categoria_id' => $_POST['categoria_id'], 'nome' => $nome, 'descricao' => $descricao,
+                        $arr = ['categoria_id' => $_POST['categoria_id'], 'nome' => $nome, 
+                        'descricao' => $descricao,
+                        'keywords' => $keywords,
                         'preco' => $preco, 'preco_promo' => $preco_promo, 'link' => $link, 'slug' => $slug, 
                         'id' => $id, 'nome_tabela' => 'produtos', 'imagem' => $imagem];
                         Painel::update($arr);
@@ -44,8 +47,8 @@ if (isset($_GET['id'])) {
                 } else {
                     $imagem = $imagem_atual;
                     $slug = Painel::generateSlug($nome);               
-                    $arr = ['categoria_id' => $_POST['categoria_id'], 'nome' => $nome, 'descricao' => $descricao,
-                    'preco' => $preco, 'preco_promo' => $preco_promo, 'link' => $link, 'slug' => $slug, 
+                    $arr = ['categoria_id' => $_POST['categoria_id'], 'nome' => $nome, 'descricao' => $descricao, 'keywords' => $keywords,
+                    'preco' => $preco, 'preco_promo' => $preco_promo, 'link' => $link, 'slug' => $slug,
                     'id' => $id, 'nome_tabela' => 'produtos'];
                     Painel::update($arr);
                     $curso = Painel::select('produtos', 'id = ?', array($id));
@@ -58,9 +61,19 @@ if (isset($_GET['id'])) {
         ?>
 
         <div class="form-group">
-            <label>Nome: </label>
+            <label>Título: </label>
             <input type="text" name="nome" required value="<?php echo $curso['nome']; ?>">
         </div><!--form-group-->
+
+        <div class="form-group">
+			<label>Descrição:</label>
+			<textarea  name="descricao"><?php echo $curso['descricao']; ?></textarea>
+		</div>
+
+        <div class="form-group">
+			<label>Palavras Chave: <small>(separadas por vírgula - terminar com vírgula)</small></label>
+			<textarea  name="keywords"><?php echo $curso['keywords']; ?></textarea>
+		</div>
 
         <div class="form-group">
 			<label>Preço:</label>
