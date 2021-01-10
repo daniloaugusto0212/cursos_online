@@ -65,6 +65,16 @@ $(function(){
                 return false;
             }
     })
+
+    $('[actionBtn=cleaner]').click(function(){
+            var txt;
+            var r = confirm("Tem certeza que deseja Zerar o registro?");
+            if (r == true) {
+                return true;
+            } else {
+                return false;
+            }
+    })
  
  
 })

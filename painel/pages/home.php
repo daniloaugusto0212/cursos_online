@@ -1,60 +1,73 @@
 <?php
-	$usuariosOnline = Painel::listarUsuariosOnline();
+$usuariosOnline = Painel::listarUsuariosOnline();
 
-	$pegarVisitasDetalhes = MySql::conectar()->prepare("SELECT * FROM `visitas.detalhes`");
-	$pegarVisitasDetalhes->execute();
+$pegarVisitasDetalhes = MySql::conectar()->prepare("SELECT * FROM `visitas.detalhes`");
+$pegarVisitasDetalhes->execute();
 
-	$pegarVisitasDetalhes = $pegarVisitasDetalhes->rowCount();
+$pegarVisitasDetalhes = $pegarVisitasDetalhes->rowCount();
 
-	$pegarVisitasTotais = MySql::conectar()->prepare("SELECT * FROM `tb_admin.visitas`");
-	$pegarVisitasTotais->execute();
+/*Visitas que estão na tabela que armazena os dados dos visitantes*/
+$pegarVisitasTotais = MySql::conectar()->prepare("SELECT * FROM `tb_admin.visitas`");
+$pegarVisitasTotais->execute();
+$pegarVisitasTotais = $pegarVisitasTotais->rowCount();
 
-	$pegarVisitasTotais = $pegarVisitasTotais->rowCount();
+/*Visitas da tabelas que só armazena o total de visitas quando a tabelas tb_admin.visitas é limpa*/
+$totalVisitas = MySql::conectar()->prepare("SELECT * FROM `total_visitas`");
+$totalVisitas->execute();
+if ($totalVisitas->rowCount() != 0) {
+    $totalVisitas = $totalVisitas->fetch()['total'];
+} else {
+    $totalVisitas = 0;
+}
 
-	$pegarVisitasHoje = MySql::conectar()->prepare("SELECT * FROM `tb_admin.visitas` WHERE dia = ?");
-	$pegarVisitasHoje->execute(array(date('Y-m-d')));
+/*Total de visitas que estão nas duas tabelas(Total real de visitas no site)*/
+$visitasTotais = $pegarVisitasTotais + $totalVisitas;
 
-	$pegarVisitasHoje = $pegarVisitasHoje->rowCount();
 
+$pegarVisitasHoje = MySql::conectar()->prepare("SELECT * FROM `tb_admin.visitas` WHERE dia = ?");
+$pegarVisitasHoje->execute(array(date('Y-m-d')));
+
+$pegarVisitasHoje = $pegarVisitasHoje->rowCount();
 
 ?>
+
 <div class="box-content w100">
-		<h2><i class="fa fa-home"></i> Painel de Controle - <?php echo NOME_EMPRESA ?></h2>
+	<h2><i class="fa fa-home"></i> Painel de Controle - <?php echo NOME_EMPRESA ?></h2>
 
-		<div class="box-metricas">
-			<div class="box-metrica-single">
-				<div class="box-metrica-wraper">
-					<h2>Usuários Online</h2>
-					<p><?php echo count($usuariosOnline); ?></p>
-				</div><!--box-metrica-wraper-->
-			</div><!--box-metrica-single-->
-			<div class="box-metrica-single">
-				<div class="box-metrica-wraper">
-					<h2>Total de Visitas</h2>
-					<p><?php echo $pegarVisitasTotais; ?></p>
-				</div><!--box-metrica-wraper-->
-			</div><!--box-metrica-single-->
-			<div class="box-metrica-single">
-				<div class="box-metrica-wraper">
-					<h2>Visitas Hoje</h2>
-					<p><?php echo $pegarVisitasHoje; ?></p>
-				</div><!--box-metrica-wraper-->
-			</div><!--box-metrica-single-->
-			<div class="clear"></div>
+	<div class="box-metricas">
+		<div class="box-metrica-single">
+			<div class="box-metrica-wraper">
+				<h2>Usuários Online</h2>
+				<p><?php echo count($usuariosOnline); ?></p>
+			</div><!--box-metrica-wraper-->
+		</div><!--box-metrica-single-->
+		<div class="box-metrica-single">
+			<div class="box-metrica-wraper">
+				<h2>Total de Visitas</h2>
+				<p><?php echo $visitasTotais; ?></p>
+			</div><!--box-metrica-wraper-->
+		</div><!--box-metrica-single-->
+		<div class="box-metrica-single">
+			<div class="box-metrica-wraper">
+				<h2>Visitas Hoje</h2>
+				<p><?php echo $pegarVisitasHoje; ?></p>
+			</div><!--box-metrica-wraper-->
+		</div><!--box-metrica-single-->
+		<div class="clear"></div>
 
-			<div style="background:blue" class="box-metrica-single">
-				<div class="box-metrica-wraper">
-					<h2>Visitas Pag. Detalhes</h2>
-					<p><?php echo $pegarVisitasDetalhes; ?></p>
-				</div><!--box-metrica-wraper-->
-			</div><!--box-metrica-single-->
-			<div class="clear"></div>
-		</div><!--box-metricas-->
+		<div style="background:blue" class="box-metrica-single">
+			<div class="box-metrica-wraper">
+				<h2>Visitas Pag. Detalhes</h2>
+				<p><?php echo $pegarVisitasDetalhes; ?></p>
+			</div><!--box-metrica-wraper-->
+		</div><!--box-metrica-single-->
+		<div class="clear"></div>
+	</div><!--box-metricas-->
 
-</div><!--box-content-->
+	</div><!--box-content-->
 
-<div class="box-content w100 left">
-<h2><i class="fa fa-rocket" aria-hidden="true"></i> Usuários Online no Site</h2>
+	<div class="box-content w100 left">
+	<h2><i class="fa fa-rocket" aria-hidden="true"></i> Usuários Online no Site</h2>
 
 	<div class="table-responsive">
 		<div class="row">
@@ -82,10 +95,10 @@
 		</div><!--row-->
 		<?php } ?>
 	</div><!--table-responsive-->
-</div><!--box-content-->
+	</div><!--box-content-->
 
-<div class="box-content w100 right">
-<h2><i class="fa fa-rocket" aria-hidden="true"></i> Usuários do Painel</h2>
+	<div class="box-content w100 right">
+	<h2><i class="fa fa-rocket" aria-hidden="true"></i> Usuários do Painel</h2>
 
 	<div class="table-responsive">
 		<div class="row">
