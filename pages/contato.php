@@ -1,7 +1,7 @@
 <div class="contato-container">
     <div class="center">
         <h2>Formulário de contato</h2>
-        <form class="ajax-form" method="post" action="">
+        <form method="post" action="<?= INCLUDE_PATH ?>enviar/formularios.php">
             <input required type="text" name="nome" placeholder="Nome...">
             <div></div>
             <input required type="text" name="email" placeholder="E-mail...">

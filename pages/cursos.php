@@ -64,10 +64,10 @@
                     }
                     
                     $queryPg = ($pagina - 1) * $porPagina;
-                    $query.=" ORDER BY order_id DESC LIMIT $queryPg,$porPagina";
+                    $query.=" ORDER BY order_id ASC LIMIT $queryPg,$porPagina";
                 }else{
                     $pagina = 1;
-                    $query.=" ORDER BY order_id DESC LIMIT 0,$porPagina";
+                    $query.=" ORDER BY order_id ASC LIMIT 0,$porPagina";
                 }
             }else{
 
@@ -79,12 +79,12 @@
         ?>     
 
             <!-- #####  topo cursos Start ##### -->
-            <div class="breadcumb_area bg-img" style="background-image: url(<?php echo INCLUDE_PATH ?>img/bg-img/breadcumb.jpg);">
+            <div class="breadcumb_area bg-img" style="background-image: url(<?= INCLUDE_PATH ?>img/bg-img/breadcumb.jpg);">
                 <div class="container h-100">
                     <div class="row h-100 align-items-center">
                         <div class="col-12">
                             <div class="page-title text-center">
-                                <h2><?php echo $cat; ?></h2>
+                                <h2><?= $cat; ?></h2>
                             </div>
                         </div>
                     </div>
@@ -115,12 +115,12 @@
                                             ?> 
                                             
                                             <!-- Single Item -->
-                                            <li data-toggle="collapse" data-target="#<?php echo $categorias[$i]['nome']; 
-                                            ?>"><a href="<?php echo INCLUDE_PATH; ?>cursos/<?php echo $categorias[$i]['slug']; ?>"><?php echo $categorias[$i]['nome']; ?> </a>
+                                            <li data-toggle="collapse" data-target="#<?= $categorias[$i]['nome']; 
+                                            ?>"><a href="<?= INCLUDE_PATH; ?>cursos/<?= $categorias[$i]['slug']; ?>"><?= $categorias[$i]['nome']; ?> </a>
                                                 
                                             </li>
                                             <?php } ?>
-                                            <li data-toggle="collapse" data-target="#"><a href="<?php echo INCLUDE_PATH; ?>cursos/">Todas </a>
+                                            <li data-toggle="collapse" data-target="#"><a href="<?= INCLUDE_PATH; ?>cursos/">Todas </a>
                                             <!-- Single Item -->                                  
                                         
                                         </ul>
@@ -156,7 +156,7 @@
                                         <div class="product-topbar d-flex align-items-center justify-content-between">
                                             <!-- Total Products -->
                                             <div class="total-products">
-                                                <p><span><?php echo $totProdutos; ?></span> <?php echo $totCursos ?></p>
+                                                <p><span><?= $totProdutos; ?></span> <?= $totCursos ?></p>
                                             </div>
                                             <!-- Sorting -->
                                             <!-- <div class="product-sorting d-flex">
@@ -177,18 +177,18 @@
 
                                 <div class="row">
                                 <?php
-                                foreach($produtos as $key=>$value){
+                                foreach ($produtos as $key => $value) {
                                     $categoriaNome = Painel::select('tb_site.categorias', 'id = ?', array($value['categoria_id']))['slug'];
-                                ?>
+                                    ?>
 
                                     <!-- Single Product -->
                                     <div class="col-12 col-sm-6 col-lg-4">
                                         <div class="single-product-wrapper">
                                             <!-- Product Image -->
                                             <div class="product-img">
-                                                <img  src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $value['imagem']; ?>" alt="">
+                                                <img  src="<?= INCLUDE_PATH_PAINEL ?>uploads/<?= $value['imagem']; ?>" alt="">
                                                 <!-- Hover Thumb -->
-                                                <img class="hover-img" src="<?php echo INCLUDE_PATH_PAINEL ?>uploads/<?php echo $value['imagem2']; ?>" alt="">
+                                                <img class="hover-img" src="<?= INCLUDE_PATH_PAINEL ?>uploads/<?= $value['imagem2']; ?>" alt="">
                                             
                                                 <!-- Favourite -->
                                                 <div class="product-favourite">
@@ -199,16 +199,17 @@
                                             <!-- Product Description -->
                                             <div class="product-description">
                                                 
-                                                <a href="<?php echo INCLUDE_PATH; ?>cursos/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>">
-                                                    <h6><?php echo $value['nome']; ?></h6>
+                                                <a href="<?= INCLUDE_PATH; ?>cursos/<?= $categoriaNome; ?>/<?= $value['slug']; ?>">
+                                                    <h6><?= $value['nome']; ?></h6>
                                                 </a>
-                                                <p class="product-price"><span class="old-price">R$<?php echo $value['preco']; ?></span> R$<?php echo $value['preco_promo']; ?></p>
+                                                <p class="product-price"><span class="old-price">R$<?= Painel::convertMoney($value['preco']); ?></span> R$<?= Painel::convertMoney($value['preco_promo']); ?></p>
 
-                                                <a style="background-color: #158742;" href="<?php echo $value['link']; ?>" class="btn essence-btn">Comprar</a>
+                                                <a style="background-color: #158742;" target="_blank"
+                                                rel="external" href="<?= $value['link']; ?>" actionBtn="comprar" class="btn essence-btn">Comprar</a>
                                                 <div class="hover-content">
                                                     <!-- Detalhes -->
                                                     <div class="add-to-cart-btn">
-                                                        <a href="<?php echo INCLUDE_PATH; ?>cursos/<?php echo $categoriaNome; ?>/<?php echo $value['slug']; ?>" class="btn essence-btn">Detalhes</a>
+                                                        <a href="<?= INCLUDE_PATH; ?>cursos/<?= $categoriaNome; ?>/<?= $value['slug']; ?>" class="btn essence-btn">Detalhes</a>
                                                     </div>
                                                 </div>
                                             
@@ -226,10 +227,11 @@
                                 <ul class="pagination mt-50 mb-70 ">
                                     <!-- <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li> -->
                                     <?php
-                                        if(!isset($_POST['parametro'])){
-                                        for($i = 1; $i <= $totalPaginas; $i++){
-                                            $catStr = $categoria['nome'] != '' ? '/'.$categoria['slug'] : '';
-                                            echo '<li class="page-item"><a class="page-link" href="'.INCLUDE_PATH.'cursos'.$catStr.'?pagina='.$i.'">'.$i.'</a></li>';                                          
+                                    if (!isset($_POST['parametro'])) {
+                                        for ($i = 1; $i <= $totalPaginas; $i++) {
+                                            $catStr = $categoria['nome'] != '' ? '/' . $categoria['slug'] : '';
+                                            echo '<li class="page-item"><a class="page-link" 
+                                            href="' . INCLUDE_PATH . 'cursos' . $catStr . '?pagina=' . $i . '">' . $i . '</a></li>';
                                         }
                                     }
                                     ?>                        

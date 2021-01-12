@@ -184,7 +184,7 @@ if ($url == '') {
     ?>
     
     <footer class="footer_area clearfix">
-        <div class="container">
+        <div class="cont">
             <div class="row">
                 <!-- Single Widget Area -->
                 <div class="col-12 col-md-6">
@@ -207,30 +207,30 @@ if ($url == '') {
                 <!-- Single Widget Area -->
                 <div class="col-12 col-md-6">
                     <div class="single_widget_area mb-30">
-                        <ul class="footer_widget_menu">
+                        <ul class="footer_widget_menu text-center">
                         <?php
                         $categoria = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` ");
                         $categoria->execute();
                         $categoria = $categoria->fetchAll();
                         foreach ($categoria as $key => $value) {
                             ?>
-                        <li><a href="cursos/<?= $value['slug']; ?>"> <?= $value['nome']; ?></a></li>
+                            <li><a href="cursos/<?= $value['slug']; ?>"> <?= $value['nome']; ?></a></li>
                         <?php } ?>
                         </ul>
                     </div>
                 </div>
             </div>
 
-            <div class="row align-items-end">
+            <div class="row">
                 <!-- Single Widget Area -->
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-4">
                     <div class="single_widget_area">
                         <div class="footer_heading mb-30">
                             <h6>Receba nossas novidades</h6>
                         </div>
                     
                         <div class="subscribtion_form">
-                            <form class="ajax-form" method="post">
+                            <form action="<?= INCLUDE_PATH ?>enviar/formularios.php" method="post">
                                 <input type="email" name="email" class="mail" placeholder="Seu e-mail..." required>
                                 <input type="hidden" name="identificador" value="form_home" />
                                 <button type="submit" name="acao" class=""><i style="color:black;"
@@ -239,8 +239,14 @@ if ($url == '') {
                         </div>
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="hotmart">
+                        <p class="copy">Curso Garantidos</p>
+                        <img src="<?= INCLUDE_PATH ?>img/hotmart-logo.png" alt="">
+                    </div>
+                </div>
                 <!-- Single Widget Area -->
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-4">
                     <div class="single_widget_area">
                         <div class="footer_social_area">
                             <a href="https://www.facebook.com/sitedansite" target="_blank"
@@ -258,14 +264,17 @@ if ($url == '') {
                             <i class="fa fa-whatsapp" aria-hidden="true"></i></a> 
                            
                             <a href="https://www.youtube.com/channel/UCSMwzDBt239V0ddFbWByxfQ" target="_blank" data-toggle="tooltip" data-placement="top" title="Youtube"><i class="fa fa-youtube-play" aria-hidden="true"></i></a>
+
+                            x
                         </div>
+                        
                     </div>
                 </div>
             </div>
 
             <div class="row mt-5">
                 <div class="col-md-12 text-center">
-                    <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                    <p class="copy">Copyright &copy;<script>document.write(new Date().getFullYear());</script>
                     Todos os direitos reservados | Desenvolvido por <a class="copy" 
                     href="https://sitedan.com.br" target="_blank"> SiteDan</a></p>
                 </div>
@@ -289,6 +298,7 @@ if ($url == '') {
     <script src="<?= INCLUDE_PATH;?>js/active.js"></script>
     <script src="<?= INCLUDE_PATH; ?>js/constants.js"></script>
     <script src="<?= INCLUDE_PATH; ?>js/scroll.js"></script>
+    <script src="<?= INCLUDE_PATH; ?>js/action.js"></script>
 
 
     <?php

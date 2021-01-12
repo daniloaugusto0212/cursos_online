@@ -32,6 +32,19 @@
 			$str=strtolower($str);
 			return $str;
 		}
+
+		//Formatar para mostra como dinheiro retirando do banco
+		public static function convertMoney($valor){
+			return number_format($valor, 2, ',', '.');
+		}
+
+		
+		//Formatar para incluir no banco
+		public static function formatarMoedaBd($valor){
+			$valor = str_replace('.', '', $valor);
+			$valor = str_replace(',', '.', $valor);
+			return $valor;
+		}
 		
 		public static function logado(){
 			return isset($_SESSION['login']) ? true : false;

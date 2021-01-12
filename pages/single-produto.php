@@ -30,9 +30,9 @@
         <!-- Single Product Thumb -->
         <div class="single_product_thumb clearfix">
             <div class="product_thumbnail_slides owl-carousel">
-                <img class="carrossel" src="<?php echo INCLUDE_PATH_PAINEL; ?>uploads/<?php echo $post['imagem_big1']; ?>" alt="">
-                <img class="carrossel" src="<?php echo INCLUDE_PATH_PAINEL; ?>uploads/<?php echo $post['imagem_big2']; ?>" alt="">
-                <img class="carrossel" src="<?php echo INCLUDE_PATH_PAINEL; ?>uploads/<?php echo $post['imagem_big3']; ?>" alt="">
+                <img class="carrossel" src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $post['imagem_big1']; ?>" alt="">
+                <img class="carrossel" src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $post['imagem_big2']; ?>" alt="">
+                <img class="carrossel" src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $post['imagem_big3']; ?>" alt="">
             </div>
         </div>
 
@@ -40,10 +40,10 @@
         <div class="single_product_desc clearfix">
             
             <a href="cart.html">
-                <h2><?php echo $post['nome']; ?></h2>
+                <h2><?= $post['nome']; ?></h2>
             </a>
-            <p class="product-price"><span class="old-price"><?php echo $post['preco']; ?></span> <?php echo $post['preco_promo']; ?></p>
-            <p class="product-desc"><?php echo $post['descricao']; ?> </p>
+            <p class="product-price"><span class="old-price">R$<?= Painel::convertMoney($post['preco']); ?></span> R$<?= Painel::convertMoney($post['preco_promo']); ?></p>
+            <p class="product-desc"><?= $post['descricao']; ?> </p>
 
             <!-- Form -->
             <form class="cart-form clearfix" method="post">
@@ -51,7 +51,8 @@
                 <!-- Cart & Favourite Box -->
                 <div class="cart-fav-box d-flex align-items-center">
                     <!-- Cart -->
-                    <a style="background-color: #158742;" href="<?php echo $post['link'];?>" class="btn essence-btn">Comprar</a>
+                    <a style="background-color: #158742;" target="_blank" rel="external"
+                    href="<?= $post['link'] ?>" actionBtn="comprar" class="btn essence-btn">Comprar</a>
                                 <!-- Hover Content -->
                     <!-- Favourite -->
                     <div class="product-favourite ml-4">

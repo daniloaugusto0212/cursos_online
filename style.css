@@ -20,6 +20,48 @@
     cursor: pointer;
 }
 
+
+.text-video {
+    margin-top: -530px;
+    margin-bottom: 390px;
+}
+
+.text-video .hero-content h6{
+    color: white!important;
+    font-size: 45px!important;
+}
+
+.cont{
+    padding: 0 25px;
+}
+
+.catagory-content a:hover{color:white!important;}
+.categoria_home:hover{color:white!important;}
+
+@media (max-width: 1050px) {
+    .text-video {
+        margin-top: -330px;
+        margin-bottom: 180px;
+    }
+}
+
+@media (max-width: 660px) {
+    .text-video {
+        margin-top: -180px;
+        margin-bottom: 65px;
+    }
+
+    .text-video .hero-content h6{
+        font-size: 30px!important;
+    }
+
+    .cont{
+        padding: 0 13px;
+    }
+}
+
+
+
 .overlay-loading{
     display: none;
     position: fixed;
@@ -137,6 +179,42 @@ font-size: 25px;
     color: white!important;
     width: 2000px;
 }
+
+.footer_menu ul li a,
+ul.footer_widget_menu li a,
+.footer_heading h6{
+    font-size: 18px!important;
+    margin-left: 5px!important;
+    margin-bottom: 15px!important;
+}
+
+
+.subscribtion_form input{
+    font-size: 18px!important;
+    text-align: center!important;
+}
+
+.footer_social_area a{
+    font-size: 35px!important;
+    margin: 10px;
+}
+
+.hotmart img{width:50% !important;}
+
+p.copy{
+    font-size: 18px!important;
+}
+
+.paginator a{
+    margin: 0 10px;
+    display: inline-block;
+    text-decoration: none;
+    padding: 6px 4px;
+    border: 1px solid rgb(220,220,220);
+    color: rgb(100,100,100);
+}
+
+
 
 a.copy{
     font-size: 20px;
