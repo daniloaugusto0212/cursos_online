@@ -233,6 +233,7 @@ if ($url == '') {
                             <form action="<?= INCLUDE_PATH ?>enviar/formularios.php" method="post">
                                 <input type="email" name="email" class="mail" placeholder="Seu e-mail..." required>
                                 <input type="hidden" name="identificador" value="form_home" />
+                                <input type="hidden" name="language" value="<?= explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE'])[0] ?>">
                                 <button type="submit" name="acao" class=""><i style="color:black;"
                                 class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
                             </form>
@@ -283,6 +284,12 @@ if ($url == '') {
         </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
+
+        <!-- whats app -->
+    <div id="div_fixa"><a href="https://api.whatsapp.com/send?phone=5511964570315&text=Ol%C3%A1%2C%20gostaria%20de%20tirar%20d%C3%BAvidas%20sobre%20o%20o%20seu%20site%20de%20cursos." target="_blank"> 
+    <img src="<?= INCLUDE_PATH ?>img/api-whatsapp-site.jpg" alt="Imagem do íone do whatsapp" width="54"></a>
+    </div>
+    <!-- whats app -->
 
     <!-- jQuery (Necessary for All JavaScript Plugins) -->
     <script src="<?= INCLUDE_PATH;?>js/jquery/jquery-2.2.4.min.js"></script>

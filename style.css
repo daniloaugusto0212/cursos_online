@@ -291,6 +291,16 @@ a.copy{
     
 }
 
+/*Botão whatsapp*/
+
+#div_fixa {
+    position:fixed; 
+    margin:15px;
+    margin-top: 300px;
+    z-index:5000;
+    bottom: 0px;
+}
+
 
 
 

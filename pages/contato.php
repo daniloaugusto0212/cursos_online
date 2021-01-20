@@ -11,6 +11,7 @@
             <textarea required placeholder="Sua mensagem..." name="mensagem" ></textarea>
             <div></div>
             <input type="hidden" name="identificador" value="form_contato" />
+            <input type="hidden" name="language" value="<?= explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE'])[0] ?>">
             <input type="submit" name="acao" value="Enviar">
 
         </form>
