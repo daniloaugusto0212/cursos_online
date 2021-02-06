@@ -1,7 +1,11 @@
 <?php
 define("TABLE_CATEGORIAS", "tb_site.categorias");
+define("SELECT_FOR_CATEGORIA_ID_LIMIT_6", "categoria_id = ? ORDER BY order_id DESC LIMIT 6");
 $categoria = Painel::selectAll(TABLE_CATEGORIAS);
-$produtos = Painel::selectAll('produtos');
+$produtosDieta = Painel::selectAllWithParm('produtos', SELECT_FOR_CATEGORIA_ID_LIMIT_6, array(19));
+$produtosTecnologia = Painel::selectAllWithParm('produtos', SELECT_FOR_CATEGORIA_ID_LIMIT_6, array(11));
+$produtosCulinaria = Painel::selectAllWithParm('produtos', SELECT_FOR_CATEGORIA_ID_LIMIT_6, array(10));
+
 ?>    
 
     
@@ -22,7 +26,7 @@ $produtos = Painel::selectAll('produtos');
 </section>
 <!-- ##### Welcome Area End ##### -->
 
-<!-- ##### Top Catagory Area Start ##### -->
+<!-- Navegar pelas categorias -->
 <div class="top_catagory_area clearfix categ">
     <div class="cont">
         <div class="text-center">
@@ -81,24 +85,25 @@ $produtos = Painel::selectAll('produtos');
     </div>
 
     <div class="container">
+        <h3 class="text-left">Dieta</h3><br>
         <div class="row">
             <div class="col-12">
                 <div class="popular-products-slides owl-carousel">
                     <?php
-                    for ($i = 0; $i <= 5; $i++) {
+                    for ($i = 0; $i < 6; $i++) {
                         $categoriaNome = Painel::select(
                             TABLE_CATEGORIAS,
                             'id = ?',
-                            array($produtos[$i]['categoria_id'])
+                            array($produtosDieta[$i]['categoria_id'])
                         )['slug'];
                         ?>
                         <!-- Single Product -->
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $produtos[$i]['imagem']; ?>" alt="">
+                                <img src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $produtosDieta[$i]['imagem']; ?>" alt="">
                                 <!-- Hover Thumb -->
-                                <img class="hover-img" src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $produtos[$i]['imagem2']; ?>" alt="">
+                                <img class="hover-img" src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $produtosDieta[$i]['imagem2']; ?>" alt="">
                                 <!-- Favourite -->
                                 <div class="product-favourite">
                                     <a href="#" class="favme fa fa-heart"></a>
@@ -106,21 +111,20 @@ $produtos = Painel::selectAll('produtos');
                             </div>
                             <!-- Product Description -->
                             <div class="product-description">
-                                <a href="<?= INCLUDE_PATH; ?>cursos/<?= $categoriaNome; ?>/<?= $produtos[$i]['slug']; ?>">
-                                    <h6><?= $produtos[$i]['nome']; ?> </h6>
+                                <a href="<?= INCLUDE_PATH; ?>cursos/<?= $categoriaNome; ?>/<?= $produtosDieta[$i]['slug']; ?>">
+                                    <h6><?= $produtosDieta[$i]['nome']; ?> </h6>
                                 </a>
                                 <p class="product-price">
-                                    <span class="old-price">R$<?= Painel::convertMoney($produtos[$i]['preco']); ?>
-                                    </span>R$<?= Painel::convertMoney($produtos[$i]['preco_promo']); ?>
+                                    <span class="old-price">R$<?= Painel::convertMoney($produtosDieta[$i]['preco']); ?>
+                                    </span>R$<?= Painel::convertMoney($produtosDieta[$i]['preco_promo']); ?>
                                 </p>
                                 <a style="background-color: #158742;" target="_blank" rel="external"
-                                href="<?= $produtos[$i]['link']; ?>"
-    actionBtn="comprar"                             class="btn essence-btn">Comprar</a>
+                                href="<?= $produtosDieta[$i]['link']; ?>" actionBtn="comprar" class="btn essence-btn">Quero saber mais</a>
                                 <!-- Hover Content -->
                                 <div class="hover-content">
                                     <!-- Comprar -->
                                     <div class="add-to-cart-btn">
-                                        <a href="<?= INCLUDE_PATH; ?>cursos/<?= $categoriaNome; ?>/<?= $produtos[$i]['slug']; ?>" class="btn essence-btn">Detalhes</a>
+                                        <a href="<?= INCLUDE_PATH; ?>cursos/<?= $categoriaNome; ?>/<?= $produtosDieta[$i]['slug']; ?>" class="btn essence-btn">Detalhes</a>
                                     </div>
                                 </div>
                             </div>
@@ -133,56 +137,111 @@ $produtos = Painel::selectAll('produtos');
         </div>
     </div>
     <div style="padding-top:40px;" class="container">
+        <h3 class="text-left">Tecnologia</h3><br>
         <div class="row">
             <div class="col-12">
                 <div class="popular-products-slides owl-carousel">
                     <?php
-                    if (count($produtos) >= 11) {
-                        for ($i = 6; $i <= 11; $i++) {
-                            $categoriaNome = Painel::select(
-                                TABLE_CATEGORIAS,
-                                'id = ?',
-                                array($produtos[$i]['categoria_id'])
-                            )['slug'];
-                            ?>
-                            <!-- Single Product -->
-                            <div class="single-product-wrapper">
-                                <!-- Product Image -->
-                                <div class="product-img">
-                                    <img src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $produtos[$i]['imagem']; ?>" alt="">
-                                    <!-- Hover Thumb -->
-                                    <img class="hover-img" src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $produtos[$i]['imagem2']; ?>" alt="">
-                                    <!-- Favourite -->
-                                    <div class="product-favourite">
-                                        <a href="#" class="favme fa fa-heart"></a>
-                                    </div>
+                    for ($i = 0; $i < 6; $i++) {
+                        $categoriaNome = Painel::select(
+                            TABLE_CATEGORIAS,
+                            'id = ?',
+                            array($produtosTecnologia[$i]['categoria_id'])
+                        )['slug'];
+                        ?>
+                        <!-- Single Product -->
+                        <div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                <img src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $produtosTecnologia[$i]['imagem']; ?>" alt="">
+                                <!-- Hover Thumb -->
+                                <img class="hover-img" src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $produtosTecnologia[$i]['imagem2']; ?>" alt="">
+                                <!-- Favourite -->
+                                <div class="product-favourite">
+                                    <a href="#" class="favme fa fa-heart"></a>
                                 </div>
-                                <!-- Product Description -->
-                                <div class="product-description">
+                            </div>
+                            <!-- Product Description -->
+                            <div class="product-description">
+                                
+                                <a href="<?= INCLUDE_PATH; ?>cursos/<?= $categoriaNome; ?>/<?= $produtosTecnologia[$i]['slug']; ?>">
+                                    <h6><?= $produtosTecnologia[$i]['nome']; ?> </h6>
+                                </a>
+                                <p class="product-price">
+                                    <span class="old-price">R$<?= Painel::convertMoney($produtosTecnologia[$i]['preco']); ?>
+                                    </span>R$<?= Painel::convertMoney($produtosTecnologia[$i]['preco_promo']); ?>
+                                </p>
+                                <a style="background-color: #158742;" target="_blank" rel="external"
+                                href="<?= $produtosTecnologia[$i]['link']; ?>" actionBtn="comprar"
+                                class="btn essence-btn">Quero saber mais</a>
+                                <!-- Hover Content -->
+                                <div class="hover-content">
+                                    <!-- Comprar -->
+                                    <div class="add-to-cart-btn">
                                     
-                                    <a href="<?= INCLUDE_PATH; ?>cursos/<?= $categoriaNome; ?>/<?= $produtos[$i]['slug']; ?>">
-                                        <h6><?= $produtos[$i]['nome']; ?> </h6>
-                                    </a>
-                                    <p class="product-price">
-                                        <span class="old-price">R$<?= Painel::convertMoney($produtos[$i]['preco']); ?>
-                                        </span>R$<?= Painel::convertMoney($produtos[$i]['preco_promo']); ?>
-                                    </p>
-                                    <a style="background-color: #158742;" target="_blank" rel="external"
-                                    href="<?= $produtos[$i]['link']; ?>" actionBtn="comprar"
-                                    class="btn essence-btn">Comprar</a>
-                                    <!-- Hover Content -->
-                                    <div class="hover-content">
-                                        <!-- Comprar -->
-                                        <div class="add-to-cart-btn">
-                                        
-                                            <a href="<?= INCLUDE_PATH; ?>cursos/<?= $categoriaNome; ?>/<?= $produtos[$i]['slug']; ?>" class="btn essence-btn">Detalhes</a>
-                                        
-                                        </div>
+                                        <a href="<?= INCLUDE_PATH; ?>cursos/<?= $categoriaNome; ?>/<?= $produtosTecnologia[$i]['slug']; ?>" class="btn essence-btn">Detalhes</a>
+                                    
                                     </div>
                                 </div>
                             </div>
-                            <?php
-                        }
+                        </div>
+                        <?php
+                    } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding-top:40px;" class="container">
+        <h3 class="text-left">Culinária</h3><br>
+        <div class="row">
+            <div class="col-12">
+                <div class="popular-products-slides owl-carousel">
+                    <?php
+                    for ($i = 0; $i < 6; $i++) {
+                        $categoriaNome = Painel::select(
+                            TABLE_CATEGORIAS,
+                            'id = ?',
+                            array($produtosCulinaria[$i]['categoria_id'])
+                        )['slug'];
+                        ?>
+                        <!-- Single Product -->
+                        <div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                <img src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $produtosCulinaria[$i]['imagem']; ?>" alt="">
+                                <!-- Hover Thumb -->
+                                <img class="hover-img" src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $produtosCulinaria[$i]['imagem2']; ?>" alt="">
+                                <!-- Favourite -->
+                                <div class="product-favourite">
+                                    <a href="#" class="favme fa fa-heart"></a>
+                                </div>
+                            </div>
+                            <!-- Product Description -->
+                            <div class="product-description">
+                                
+                                <a href="<?= INCLUDE_PATH; ?>cursos/<?= $categoriaNome; ?>/<?= $produtosCulinaria[$i]['slug']; ?>">
+                                    <h6><?= $produtosCulinaria[$i]['nome']; ?> </h6>
+                                </a>
+                                <p class="product-price">
+                                    <span class="old-price">R$<?= Painel::convertMoney($produtosCulinaria[$i]['preco']); ?>
+                                    </span>R$<?= Painel::convertMoney($produtosCulinaria[$i]['preco_promo']); ?>
+                                </p>
+                                <a style="background-color: #158742;" target="_blank" rel="external"
+                                href="<?= $produtosCulinaria[$i]['link']; ?>" actionBtn="comprar"
+                                class="btn essence-btn">Quero saber mais</a>
+                                <!-- Hover Content -->
+                                <div class="hover-content">
+                                    <!-- Comprar -->
+                                    <div class="add-to-cart-btn">
+                                    
+                                        <a href="<?= INCLUDE_PATH; ?>cursos/<?= $categoriaNome; ?>/<?= $produtosCulinaria[$i]['slug']; ?>" class="btn essence-btn">Detalhes</a>
+                                    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
                     } ?>
                 </div>
             </div>

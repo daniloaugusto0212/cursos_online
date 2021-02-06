@@ -186,7 +186,7 @@
 			return $certo;
 		}
  
-		public static function selectAll($tabela,$start = null,$end = null){
+		public static function selectAll($tabela, $start = null, $end = null){
 			if($start == null && $end == null)
 				$sql = MySql::conectar()->prepare("SELECT * FROM `$tabela` ORDER BY order_id ASC");
 			else
@@ -216,7 +216,7 @@
 		/*
 			Metodo especifico para selecionar apenas 1 registro.
 		*/
-		public static function select($table,$query = '',$arr = ''){
+		public static function select($table, $query = '', $arr = ''){
 			if($query != false){
 				$sql = MySql::conectar()->prepare("SELECT * FROM `$table` WHERE $query");
 				$sql->execute($arr);
@@ -225,6 +225,17 @@
 				$sql->execute();
 			}
 			return $sql->fetch();
+		}
+
+		public static function selectAllWithParm($table,$query = '',$arr = ''){
+			if($query != false){
+				$sql = MySql::conectar()->prepare("SELECT * FROM `$table` WHERE $query");
+				$sql->execute($arr);
+			}else{
+				$sql = MySql::conectar()->prepare("SELECT * FROM `$table`");
+				$sql->execute();
+			}
+			return $sql->fetchAll();
 		}
  
 		public static function orderItem($tabela,$orderType,$idItem){

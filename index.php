@@ -22,9 +22,9 @@ if (isset($url1[2])) {
 
 $keywrodsJoker =
     ' apostilas, cursos online, online, categorias de cursos, marketing digital, 
-    hotmart, cursos hotmart, estudos, como ganhar dinheiro na internet,
+    estudos, como ganhar dinheiro na internet,
     portal de cursos, dansol cursos, nômade digital, Ganhe dinheiro em casa,
-    Temos várias modalidades de cursos e apostilas, ';
+    Temos várias modalidades de cursos e apostilas, cursos online gratuito, cursos online grátis, cursos online gratis, cursos online gratuitos com certificado, gran cursos online, formas de ganhar dinheiro na internet, como ganhar dinheiro na internet rápido';
 
 $keywordsBd = empty($keywordsBd) ?
                 ' saúde, beleza, emagrecimento, dietas, moda, tecnologia, melhor curso de PHP, 
@@ -67,7 +67,7 @@ if ($url == '') {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Danilo Augusto - SiteDan" >
     <meta name="keywords" content="<?= $keywordsBd .= $keywrodsJoker ?>">
-    <meta name="description" content="<?= $description ?> - Site de vendas dos cursos oferecido pela hotmart. 
+    <meta name="description" content="<?= $description ?> - Site de venda de cursos oferecidos pelas plataformas digitais mais famosas do Brasil. 
     . ">
     <meta property="og:title" content="DanSol Cursos Online">
     <meta name="robots" content="index" />
@@ -250,11 +250,11 @@ if ($url == '') {
                 <div class="col-12 col-md-4">
                     <div class="single_widget_area">
                         <div class="footer_social_area">
-                            <a href="https://www.facebook.com/sitedansite" target="_blank"
+                            <a href="https://www.facebook.com/dansolcursos" target="_blank"
                             data-toggle="tooltip" data-placement="top" title="Facebook">
                             <i class="fa fa-facebook" aria-hidden="true"></i></a>
 
-                            <a href="https://www.instagram.com/sitedan" target="_blank" 
+                            <a href="https://www.instagram.com/dansolcursos" target="_blank" 
                             data-toggle="tooltip" data-placement="top" title="Instagram">
                             <i class="fa fa-instagram" aria-hidden="true"></i></a>
 

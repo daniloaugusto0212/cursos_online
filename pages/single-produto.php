@@ -52,7 +52,7 @@
                 <div class="cart-fav-box d-flex align-items-center">
                     <!-- Cart -->
                     <a style="background-color: #158742;" target="_blank" rel="external"
-                    href="<?= $post['link'] ?>" actionBtn="comprar" class="btn essence-btn">Comprar</a>
+                    href="<?= $post['link'] ?>" actionBtn="comprar" class="btn essence-btn">Quero saber mais</a>
                                 <!-- Hover Content -->
                     <!-- Favourite -->
                     <div class="product-favourite ml-4">
