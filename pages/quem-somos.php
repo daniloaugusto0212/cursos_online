@@ -1,10 +1,8 @@
 
-    <!-- ##### Blog Wrapper Area Start ##### -->
+   
     <div class="single-blog-wrapper">
-
-        <!-- Single Blog Post Thumb -->
         <div class="single-blog-post-thumb">
-            <img src="img/bg-img/bg-8.jpg" alt="">
+            <img src="<?= INCLUDE_PATH ?>img/bg-img/bg-8.jpg" alt="Banner da página quem somos">
         </div>
 
         <div class="container">
@@ -36,8 +34,6 @@
 
                                 <h4>Tem como ficar mais seguro o pagamento?</h4>
                                 <p>Tem sim, se não confiar ainda ou não conhece a Hotmart o pagamento pode ser efetuado na empresa líder em pagamentos online, o PayPal, agora sim né, vamos escolher seu curso?</p>
-
-                           
                         </div>
                     </div>
                 </div>

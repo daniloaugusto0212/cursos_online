@@ -1,33 +1,28 @@
-<?php    
-    Site::contadorDet();
-    $url = explode('/',$_GET['url']);
+<?php
 
-	$verifica_categoria = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` WHERE slug = ?");
-	$verifica_categoria->execute(array($url[1]));
-	if($verifica_categoria->rowCount() == 0){
-		Painel::redirect(INCLUDE_PATH.'loja');
-	}
-	$categoria_info = $verifica_categoria->fetch();
+Site::contadorDet();
+$url = explode('/', $_GET['url']);
 
-	$post = MySql::conectar()->prepare("SELECT * FROM `produtos` WHERE slug = ? AND categoria_id = ?");
-	$post->execute(array($url[2],$categoria_info['id']));
-	if($post->rowCount() == 0){
-		Painel::redirect(INCLUDE_PATH.'loja');
-	}
+$verifica_categoria = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` WHERE slug = ?");
+$verifica_categoria->execute(array($url[1]));
+if ($verifica_categoria->rowCount() == 0) {
+    Painel::redirect(INCLUDE_PATH . 'loja');
+}
+$categoria_info = $verifica_categoria->fetch();
 
-	//É POR QUE O CURSO EXITE
-	$post = $post->fetch();
+$post = MySql::conectar()->prepare("SELECT * FROM `produtos` WHERE slug = ? AND categoria_id = ?");
+$post->execute(array($url[2],$categoria_info['id']));
+if ($post->rowCount() == 0) {
+    Painel::redirect(INCLUDE_PATH . 'loja');
+}
+
+//É POR QUE O CURSO EXITE
+$post = $post->fetch();
 
 ?>
-    <!-- ##### Right Side Cart Area ##### -->
+   
     <div class="cart-bg-overlay"></div>
-
-    
-
-    <!-- ##### Single Product Details Area Start ##### -->
     <section class="single_product_details_area d-flex align-items-center">
-
-        <!-- Single Product Thumb -->
         <div class="single_product_thumb clearfix">
             <div class="product_thumbnail_slides owl-carousel">
                 <img class="carrossel" src="<?= INCLUDE_PATH_PAINEL; ?>uploads/<?= $post['imagem_big1']; ?>" alt="">
@@ -62,6 +57,5 @@
             </form>
         </div>
     </section>
-    <!-- ##### Single Product Details Area End ##### -->
 
   

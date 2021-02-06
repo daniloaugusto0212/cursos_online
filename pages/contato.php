@@ -1,3 +1,7 @@
+<div class="single-blog-post-thumb">
+    <img src="<?= INCLUDE_PATH ?>img/bg-img/bg-contato.jpg" alt="Banner da página de contato">
+</div>
+
 <div class="contato-container">
     <div class="center">
         <h2>Formulário de contato</h2>
@@ -32,7 +36,7 @@
 
         <div class="contact-address mt-50">
             <p><span>Endereço:</span> Rua Moisés Alves dos Santos, 434 - Jd das Oliveiras - São Paulo - SP</p>
-            <p><span>telephone:</span> (11) 96457-0315</p>
+            <p><span>telefone:</span> (11) 96457-0315</p>
             <p><a href="mailto:contato@dansol.com.br">contato@dansol.com.br</a></p>
         </div>
     </div>

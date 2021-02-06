@@ -6,8 +6,7 @@ $produtosDieta = Painel::selectAllWithParm('produtos', SELECT_FOR_CATEGORIA_ID_L
 $produtosTecnologia = Painel::selectAllWithParm('produtos', SELECT_FOR_CATEGORIA_ID_LIMIT_6, array(11));
 $produtosCulinaria = Painel::selectAllWithParm('produtos', SELECT_FOR_CATEGORIA_ID_LIMIT_6, array(10));
 
-?>    
-
+?>
     
 <section class="bg-img background-overlay">
     <video width="100%" type="video/mp4" src="<?= INCLUDE_PATH ?>videos/study.m4v" 
