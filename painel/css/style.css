@@ -279,6 +279,10 @@ table a.btn{
 
 }
 
+table td.actions a {
+    margin-right: 5px;
+}
+
 a.btn.edit{background: #f4b03e;}
 a.btn.delete{background: #E05C4E;}
 a.btn.order{background: #04A65A;}
