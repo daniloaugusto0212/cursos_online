@@ -1,6 +1,7 @@
 <?php
+
 define("TABLE_CATEGORIAS", "tb_site.categorias");
-define("SELECT_FOR_CATEGORIA_ID_LIMIT_6", "categoria_id = ? ORDER BY order_id DESC LIMIT 6");
+define("SELECT_FOR_CATEGORIA_ID_LIMIT_6", "categoria_id = ? AND status = 1 ORDER BY order_id DESC LIMIT 6");
 $categoria = Painel::selectAll(TABLE_CATEGORIAS);
 $produtosDieta = Painel::selectAllWithParm('produtos', SELECT_FOR_CATEGORIA_ID_LIMIT_6, array(19));
 $produtosTecnologia = Painel::selectAllWithParm('produtos', SELECT_FOR_CATEGORIA_ID_LIMIT_6, array(11));
@@ -89,7 +90,12 @@ $produtosCulinaria = Painel::selectAllWithParm('produtos', SELECT_FOR_CATEGORIA_
             <div class="col-12">
                 <div class="popular-products-slides owl-carousel">
                     <?php
-                    for ($i = 0; $i < 6; $i++) {
+                    if (count($produtosDieta) >= 6) {
+                        $totalDieta = 6;
+                    } else {
+                        $totalDieta = count($produtosDieta);
+                    }
+                    for ($i = 0; $i < $totalDieta; $i++) {
                         $categoriaNome = Painel::select(
                             TABLE_CATEGORIAS,
                             'id = ?',
@@ -141,7 +147,12 @@ $produtosCulinaria = Painel::selectAllWithParm('produtos', SELECT_FOR_CATEGORIA_
             <div class="col-12">
                 <div class="popular-products-slides owl-carousel">
                     <?php
-                    for ($i = 0; $i < 6; $i++) {
+                    if (count($produtosTecnologia) >= 6) {
+                        $totalTecnologia = 6;
+                    } else {
+                        $totalTecnologia = count($produtosTecnologia);
+                    }
+                    for ($i = 0; $i < $totalTecnologia; $i++) {
                         $categoriaNome = Painel::select(
                             TABLE_CATEGORIAS,
                             'id = ?',
@@ -197,7 +208,12 @@ $produtosCulinaria = Painel::selectAllWithParm('produtos', SELECT_FOR_CATEGORIA_
             <div class="col-12">
                 <div class="popular-products-slides owl-carousel">
                     <?php
-                    for ($i = 0; $i < 6; $i++) {
+                    if (count($produtosCulinaria) >= 6) {
+                        $totalCulinaria = 6;
+                    } else {
+                        $totalCulinaria = count($produtosCulinaria);
+                    }
+                    for ($i = 0; $i < $totalCulinaria; $i++) {
                         $categoriaNome = Painel::select(
                             TABLE_CATEGORIAS,
                             'id = ?',

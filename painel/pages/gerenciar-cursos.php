@@ -11,12 +11,18 @@ if (isset($_GET['excluir'])) {
     Painel::redirect(INCLUDE_PATH_PAINEL . 'gerenciar-cursos');
 } elseif (isset($_GET['order']) && isset($_GET['id'])) {
     Painel::orderItem('produtos', $_GET['order'], $_GET['id']);
+} elseif (isset($_GET['status'])) {
+    $setStatus = Painel::update(array(
+        'id' => $_GET['id'],
+        'nome_tabela' => 'produtos',
+        'status' => $_GET['status']
+    ));
 }
     $paginaAtual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
     $porPagina = 50;
 
-    //$cursos = Painel::selectAll('produtos', ($paginaAtual - 1) * $porPagina, $porPagina);
-    $cursos = Painel::selectAllWithParm('produtos', "status = ? ORDER BY order_id ASC LIMIT " . ($paginaAtual - 1) * $porPagina . "," . $porPagina, array(1));
+    $cursos = Painel::selectAll('produtos', ($paginaAtual - 1) * $porPagina, $porPagina);
+    //$cursos = Painel::selectAllWithParm('produtos', "status = ? ORDER BY order_id ASC LIMIT " . ($paginaAtual - 1) * $porPagina . "," . $porPagina, array(1));
 
 ?>
 
@@ -27,7 +33,7 @@ if (isset($_GET['excluir'])) {
             <tr>
                 <td>Título</td>
                 <td>Categoria</td>
-                <td>Imagem</td>
+                <td>Img/Link</td>
                 <td>Ações</td>
                 <td>Ordenar</td>
             </tr>
@@ -39,18 +45,19 @@ if (isset($_GET['excluir'])) {
             <tr>
                 <td><?= $value['nome']; ?></td>   
                 <td><?= $nomeCategoria; ?></td>         
-                <td><img style="width: 50px;height: 50px;" src="<?= INCLUDE_PATH_PAINEL ?>uploads/<?= $value['imagem']; ?>"/></td>
-                <td>
+                <td><a href="<?= $value['link'] ?>" target="_blank"><img style="width: 50px;height: 50px;" src="<?= INCLUDE_PATH_PAINEL ?>uploads/<?= $value['imagem']; ?>"/></td></a>
+                
+                <td class="actions">
                     <?php if ($value['status'] == 0) : ?>
-                        <a style="background-color: aquamarine;" title="Ativar" class="btn edit" href="<?= INCLUDE_PATH_PAINEL ?>gerenciar-cursos?id=<?= $value['id']; ?>status=1"><i class="fa fa-angle-left" ></i></a>
+                        <a style="background-color: aquamarine;" title="Ativar" class="btn edit" href="<?= INCLUDE_PATH_PAINEL ?>gerenciar-cursos?id=<?= $value['id']; ?>&status=1"><i class="fa fa-angle-down" ></i></a>
                     <?php else : ?>
-                            <a style="background-color: #00BFA5;" title="Inativar" class="btn edit" href="<?= INCLUDE_PATH_PAINEL ?>gerenciar-cursos?id=<?= $value['id']; ?>status=0"><i class="fa fa-check" ></i></a>
+                            <a style="background-color: #00BFA5;" title="Inativar" class="btn edit" href="<?= INCLUDE_PATH_PAINEL ?>gerenciar-cursos?id=<?= $value['id']; ?>&status=0"><i class="fa fa-check" ></i></a>
                     <?php endif ?>
                     <a title="Editar" class="btn edit" href="<?= INCLUDE_PATH_PAINEL ?>editar-curso?id=<?= $value['id']; ?>"><i class="fa fa-pen" ></i></a>
                     
                     <a title="Apagar" actionBtn="delete" class="btn delete" href="<?= INCLUDE_PATH_PAINEL ?>gerenciar-cursos?excluir=<?= $value['id']; ?>"><i class="fa fa-times"></i></a>
                 </td>
-                <td>
+                <td class="actions">
                     <a class="btn order" href="<?= INCLUDE_PATH_PAINEL ?>gerenciar-cursos?order=up&id=<?= $value['id']; ?>"><i class="fa fa-angle-up"></i></a>
                     <a class="btn order" href="<?= INCLUDE_PATH_PAINEL ?>gerenciar-cursos?order=down&id=<?= $value['id']; ?>"><i class="fa fa-angle-down"></i></a>
                 </td>

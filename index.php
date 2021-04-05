@@ -1,14 +1,10 @@
 <?php
 include('config.php');
-Site::updateUsuarioOnline(); 
+Site::updateUsuarioOnline();
 Site::contador();
 $categoria = MySql::conectar()->prepare("SELECT * FROM `tb_site.categorias` ");
 $categoria->execute();
 $categoria = $categoria->fetchAll();
-
-$produtos = MySql::conectar()->prepare("SELECT * FROM `produtos` ");
-$produtos->execute();
-$produtos = $produtos->fetchAll();
 
 $url1 = explode('/', @$_GET['url']);
 

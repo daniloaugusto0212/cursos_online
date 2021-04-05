@@ -1,5 +1,5 @@
 <?php
-define("TABLE_CATEGORIAS", "`tb_site.categorias`");
+define("TABLE_CATEGORIAS", "tb_site.categorias");
 $url = explode('/', $_GET['url']);
 if (!isset($url[2])) {
     $categoria = Painel::select(TABLE_CATEGORIAS, 'slug = ?', array(@$url[1]));
@@ -9,7 +9,7 @@ if (!isset($url[2])) {
         if (empty($categoria['nome'])) {
             $cat = 'Visualizando todos os Cursos';
             $totCursos = 'cursos disponíveis em todas as categorias';
-            $totProdutos = MySql::conectar()->prepare("SELECT `id` FROM `produtos`");
+            $totProdutos = MySql::conectar()->prepare("SELECT `id` FROM `produtos` WHERE status = 1");
             $totProdutos->execute();
             $totProdutos = $totProdutos->fetchAll();
             $totProdutos = count($totProdutos);
@@ -25,10 +25,10 @@ if (!isset($url[2])) {
         $cat = ' Busca realizada com sucesso!';
     }
 
-    $query = "SELECT * FROM `produtos` ";
+    $query = "SELECT * FROM `produtos` WHERE status = 1";
     if (!empty($categoria['nome'])) {
         $categoria['id'] = (int)$categoria['id'];
-        $query .= "WHERE categoria_id = $categoria[id]";
+        $query .= " AND categoria_id = $categoria[id]";
     }
     if (isset($_POST['parametro'])) {
         if (strstr($query, 'WHERE') !== false) {
@@ -36,13 +36,13 @@ if (!isset($url[2])) {
             $query .= " AND nome LIKE '%$busca%'";
         } else {
             $busca = $_POST['parametro'];
-            $query .= " WHERE nome LIKE '%$busca%'";
+            $query .= " AND nome LIKE '%$busca%'";
         }
     }
-    $query2 = "SELECT * FROM `produtos` ";
+    $query2 = "SELECT * FROM `produtos` WHERE status = 1";
     if (!empty($categoria['nome'])) {
             $categoria['id'] = (int)$categoria['id'];
-            $query2 .= "WHERE categoria_id = $categoria[id]";
+            $query2 .= " AND categoria_id = $categoria[id]";
     }
     if (isset($_POST['parametro'])) {
         if (strstr($query2, 'WHERE') !== false) {
@@ -50,7 +50,7 @@ if (!isset($url[2])) {
             $query2 .= " AND nome LIKE '%$busca%'";
         } else {
             $busca = $_POST['parametro'];
-            $query2 .= " WHERE nome LIKE '%$busca%'";
+            $query2 .= " AND nome LIKE '%$busca%'";
         }
     }
     $totalPaginas = MySql::conectar()->prepare($query2);

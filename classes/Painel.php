@@ -210,7 +210,7 @@ class Painel
         if ($start == null && $end == null) {
             $sql = MySql::conectar()->prepare("SELECT * FROM `$tabela` ORDER BY order_id ASC");
         } else {
-            $sql = MySql::conectar()->prepare("SELECT * FROM `$tabela` ORDER BY order_id ASC LIMIT $start,$end");
+            $sql = MySql::conectar()->prepare("SELECT * FROM `$tabela` ORDER BY order_id and status ASC LIMIT $start,$end");
         }
 
         $sql->execute();
