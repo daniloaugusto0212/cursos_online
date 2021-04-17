@@ -29,10 +29,17 @@ $keywordsBd = empty($keywordsBd) ?
 
 if (isset($url1[1])) {
     $url = $url1[1];
+
+    $bgCategoria = MySql::conectar()->prepare("SELECT imagem FROM `tb_site.categorias` WHERE slug = ?");
+    $bgCategoria->execute(array($url));
+    $bgCategoria = $bgCategoria->fetch()['imagem'];
+    $bgContent = INCLUDE_PATH_PAINEL . 'uploads/' . $bgCategoria;
 } elseif (isset($url1[0])) {
     $url = $url1[0];
+    $bgContent = INCLUDE_PATH . 'img/bg-img/bg-1.jpg';
 } else {
     $url = '';
+    $bgContent = INCLUDE_PATH . 'img/bg-img/bg-1.jpg';
 }
 
 if ($url == '') {
@@ -75,7 +82,7 @@ if ($url == '') {
     <meta property="og:url" content="<?= INCLUDE_PATH ?><?= $url ?>"/>
     <meta property="og:site_name" content="Dansol - Cursos online | Estude da sua casa!" />
     <meta property="article:modified_time" content="2021-01-03T00:04:51+00:00" />
-    <meta property="og:image" content="<?= INCLUDE_PATH; ?>img/bg-img/bg-1.jpg"/>
+    <meta property="og:image" content="<?= $bgContent ?>"/>
     <meta name="twitter:card" content="summary" />   
     <meta name="twitter: description" 
     content = "DanSol - Cursos Online e Apostilas para você estudar de onde quiser. Comece já. O que está esperando?"> 
