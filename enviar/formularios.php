@@ -1,6 +1,6 @@
 <?php
 include('../config.php');
-define('MAIL_SENDER', 'danilo@abrircnpjmei.com.br');
+define('MAIL_SENDER', 'noreply@dansol.com.br');
 $selectMail = Painel::select("pass_mail", "mail = ?", array(MAIL_SENDER));
 define('PASSWORD_MAIL', $selectMail['password']);
 define('SERVER_MAIL', 'smtp.hostinger.com.br');
@@ -9,8 +9,11 @@ $data = [];
 $assunto = 'Nova mensagem do site Loja.';
 $corpo = '';
 foreach ($_POST as $key => $value) {
+    if ($value == 'Enviar' || $value == 'pt-BR') {
+        continue;
+    }
     $corpo .= ucfirst($key) . ": " . $value;
-    $corpo .= "<hr>";
+    $corpo .= "<hr><br>";
 }
 $info = array(
     'assunto' => $assunto,
